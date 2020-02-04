@@ -37,7 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (_, index) {
                   Map wppost = snapshot.data[index];
-                  var imageUrl = wppost['_embedded']['wp:featuredmedia'][0]['source_url'];
+                  var imageUrl =
+                      wppost['_embedded']['wp:featuredmedia'][0]['source_url'];
                   return Container(
                     margin: EdgeInsets.all(10.0),
                     child: Card(
@@ -45,7 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Image.network(imageUrl),
+                          // Image.network(imageUrl),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: FadeInImage.assetNetwork(
+                                placeholder: 'images/loading.gif',
+                                image: imageUrl),
+                          ),
                           Container(
                             padding: EdgeInsets.all(5.0),
                             child: Text(
