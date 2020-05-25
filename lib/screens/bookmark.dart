@@ -9,7 +9,9 @@ class _BookmarkState extends State<Bookmark> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      child: Center(
+        child: Text("No Bookmark Yet!"),
+      ),
     );
   }
 }
