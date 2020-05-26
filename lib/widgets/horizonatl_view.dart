@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
 
 import '../wp_api.dart';
@@ -10,6 +11,17 @@ class HorizontalView extends StatefulWidget {
 
 class _HorizontalViewState extends State<HorizontalView> {
   WpApi api = WpApi();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void _rebuild() {
+    setState(() {
+      
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -17,66 +29,83 @@ class _HorizontalViewState extends State<HorizontalView> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Container(
-            height: 250,
+            height: 230,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data.length,
               itemBuilder: (_, index) {
+                var formatedTime =
+                    DateFormat.m().format(snapshot.data[index].time);
                 return InkWell(
-                    onTap: () {
-                      var title = snapshot.data[index];
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) {
-                          return PostView(
-                            posts: title,
-                          );
-                        }),
-                      );
-                    },
-                    child: Column(
-                      children: <Widget>[
-                        Stack(
+                  onTap: () {
+                    var title = snapshot.data[index];
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) {
+                        return PostView(
+                          posts: title,
+                        );
+                      }),
+                    );
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        width: 200,
+                        height: 150,
+                        margin: EdgeInsets.only(left: 20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30.0),
+                          ),
+                        ),
+                        child: Image.network(
+                          snapshot.data[index].image,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        padding: EdgeInsets.all(5.0),
+                        child: Column(
                           children: <Widget>[
-                            Container(
-                              width: 350,
-                              height: 200,
-                              margin: EdgeInsets.only(left: 10.0, right: 10.0),
-                              decoration: BoxDecoration(
-                                // borderRadius:
-                                //     BorderRadius.all(Radius.circular(20.0)),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    snapshot.data[index].image,
-                                  ),
-                                ),
-                              ),
-                              // child: FadeInImage.assetNetwork(
-                              //   placeholder: 'images/loading.gif',
-                              //   image: snapshot.data[index].image,
-                              //   width: 350,
-                              //   height: 250,
-                              // ),
+                            Text(
+                              snapshot.data[index].title,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
                             ),
-                            Positioned(
-                              left: 20,
-                              bottom: 5,
-                              child: Container(
-                                // decoration: BoxDecoration(
-                                //     color: Colors.pink[300],
-                                //     borderRadius: BorderRadius.circular(100)),
-                                child: Text(
-                                  snapshot.data[index].title,
-                                  style: TextStyle(
-                                    color: Colors.white
-                                  ),
-                                ),
+                            Text(
+                              "$formatedTime minutes ago",
+                              style: TextStyle(
+                                color: Colors.grey,
                               ),
-                            )
+                            ),
                           ],
-                        )
-                      ],
-                    ));
+                        ),
+                      ),
+                    ],
+                  ),
+                );
               },
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Column(
+              children: <Widget>[
+                Text("Sorry please check you intetnet connection"),
+                RaisedButton(
+                  color: Theme.of(context).primaryColor,
+                  onPressed: _rebuild,
+                  child: Text(
+                    "Refresh",
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                  ),
+                )
+              ],
             ),
           );
         } else {
@@ -84,7 +113,11 @@ class _HorizontalViewState extends State<HorizontalView> {
             children: <Widget>[
               SizedBox(height: 10.0),
               Center(
-                child: CircularProgressIndicator(),
+                child: Image.asset(
+                  'assets/images/pageloading.gif',
+                  width: 350,
+                  height: 200,
+                ),
               ),
             ],
           );
