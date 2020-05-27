@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:wp_blog_app/providers/brightness_provider.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
 
 import '../wp_api.dart';
+import '../const_values.dart';
 
 class HorizontalView extends StatefulWidget {
   @override
@@ -18,12 +21,12 @@ class _HorizontalViewState extends State<HorizontalView> {
   }
 
   void _rebuild() {
-    setState(() {
-      
-    });
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
+    final changeData = Provider.of<BrightnessProvider>(context);
     return FutureBuilder(
       future: api.fetchTopPosts(),
       builder: (context, snapshot) {
@@ -94,15 +97,18 @@ class _HorizontalViewState extends State<HorizontalView> {
           return Center(
             child: Column(
               children: <Widget>[
-                Text("Sorry please check you intetnet connection"),
+                Text(
+                  "Sorry please check you intetnet connection",
+                  style: TextStyle(
+                    color: changeData.isDark == false ? Colors.black : Colors.white,
+                  ),
+                ),
                 RaisedButton(
-                  color: Theme.of(context).primaryColor,
+                  color: changeData.isDark == false ? Theme.of(context).primaryColor : darkColorTwo,
                   onPressed: _rebuild,
                   child: Text(
                     "Refresh",
-                    style: TextStyle(
-                      color: Colors.white
-                    ),
+                    style: TextStyle(color: Colors.white),
                   ),
                 )
               ],

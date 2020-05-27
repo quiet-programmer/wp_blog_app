@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wp_blog_app/providers/brightness_provider.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
 
 import '../wp_api.dart';
+import '../const_values.dart';
 
 class ListViewPost extends StatefulWidget {
   @override
@@ -17,6 +20,7 @@ class _ListViewPostState extends State<ListViewPost> {
 
   @override
   Widget build(BuildContext context) {
+    final changeData = Provider.of<BrightnessProvider>(context);
     return Container(
       child: FutureBuilder(
         future: api.fetchListPosts(),
@@ -24,88 +28,75 @@ class _ListViewPostState extends State<ListViewPost> {
           if (snapshot.hasData) {
             return Expanded(
               child: Container(
-                height: 450,
                 child: ListView.builder(
+                  primary: false,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
                   itemCount: snapshot.data.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (_, index) {
                     return InkWell(
-                        onTap: () {
-                          var title = snapshot.data[index];
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) {
-                              return PostView(
-                                posts: title,
-                              );
-                            }),
-                          );
-                        },
-                        child: Stack(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(
-                                  top: 20.0, left: 10.0, right: 10.0),
-                              height: 280,
-                              width: 200,
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0)),
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    repeat: ImageRepeat.noRepeat,
-                                    image: NetworkImage(
-                                        snapshot.data[index].image),
-                                  )),
-                            ),
-                            Positioned(
-                              right: 15,
-                              bottom: 40,
-                              child: Container(
-                                height: 35,
-                                width: 35,
-                                decoration: BoxDecoration(
-                                  color: Colors.pink[300],
-                                  borderRadius: BorderRadius.circular(100)
-                                ),
-                                child: Icon(Icons.arrow_forward, size: 20.0, color: Colors.white,),
+                      onTap: () {
+                        var title = snapshot.data[index];
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) {
+                            return PostView(
+                              posts: title,
+                            );
+                          }),
+                        );
+                      },
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 50,
+                            height: 80,
+                            margin: EdgeInsets.only(left: 20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30.0),
                               ),
                             ),
-                            Positioned(
-                              left: 10,
-                              bottom: 90,
-                              child: Container(
-                                height: 45,
-                                width: 150,
-                                decoration: BoxDecoration(
-                                  color: Colors.pink[300],
-                                  borderRadius: BorderRadius.circular(50)
-                                ),
-                                child: Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      snapshot.data[index].title,
-                                      style: TextStyle(
-                                        color: Colors.white
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                            child: Image.network(
+                              snapshot.data[index].image,
+                              fit: BoxFit.cover,
                             ),
-                          ],
-                        ));
+                          ),
+                        ],
+                      ),
+                    );
                   },
                 ),
+              ),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "Sorry please check you intetnet connection",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  RaisedButton(
+                    color: changeData.isDark == false ? Theme.of(context).accentColor : darkColor,
+                    onPressed: () {},
+                    child: Text(
+                      "Refresh",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
               ),
             );
           } else {
             return Column(
               children: <Widget>[
-                SizedBox(height: 10.0),
                 Center(
-                  child: CircularProgressIndicator(),
+                  child: Image.asset(
+                    'assets/images/pageloading.gif',
+                    width: MediaQuery.of(context).size.width,
+                    height: 200,
+                  ),
                 ),
               ],
             );
