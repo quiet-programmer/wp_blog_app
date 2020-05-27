@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wp_blog_app/providers/brightness_provider.dart';
 import 'package:wp_blog_app/screens/home_screen.dart';
 
 import '../const_values.dart';
@@ -7,6 +9,7 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final changeData = Provider.of<BrightnessProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -16,9 +19,9 @@ class App extends StatelessWidget {
         appBarTheme: AppBarTheme(
           brightness: Brightness.dark,
           elevation: 0.0,
-          color: Colors.white,
+          color: changeData.isDark == false ? Colors.white : darkColor,
           iconTheme: IconThemeData(
-            color: Colors.black,
+            color: changeData.isDark == false ? Colors.black : Colors.white,
           ),
           textTheme: TextTheme(
             headline6: TextStyle(color: Colors.black),
