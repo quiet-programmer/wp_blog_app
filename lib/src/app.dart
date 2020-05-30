@@ -5,14 +5,19 @@ import 'package:wp_blog_app/screens/home_screen.dart';
 
 import '../const_values.dart';
 
-class App extends StatelessWidget {
-  // This widget is the root of your application.
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+
   @override
   Widget build(BuildContext context) {
     final changeData = Provider.of<BrightnessProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'WP Flutter Blog Demo',
       theme: ThemeData(
         primaryColor: mainColor,
         accentColor: subColor,
