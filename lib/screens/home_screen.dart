@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var dateFormat = DateFormat.yMMMMEEEEd().format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
     final changeData = Provider.of<BrightnessProvider>(context);
