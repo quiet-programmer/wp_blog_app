@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:wp_blog_app/providers/brightness_provider.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
+// import 'package:flutter_wordpress/flutter_wordpress.dart' as wp;
 
 import '../wp_api.dart';
 import '../const_values.dart';
@@ -13,23 +14,14 @@ class HorizontalView extends StatefulWidget {
 }
 
 class _HorizontalViewState extends State<HorizontalView> {
+
   WpApi api = WpApi();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void _rebuild() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     final changeData = Provider.of<BrightnessProvider>(context);
     return FutureBuilder(
-      future: api.fetchTopPosts(),
-      builder: (context, snapshot) {
+      future: api.topPost,
+      builder: (_, snapshot) {
         if (snapshot.hasData) {
           return Container(
             height: 230,
@@ -39,6 +31,7 @@ class _HorizontalViewState extends State<HorizontalView> {
               itemBuilder: (_, index) {
                 var formatedTime =
                     DateFormat.m().format(snapshot.data[index].time);
+                    print(snapshot.data[index].time.toString());
                 return InkWell(
                   onTap: () {
                     var title = snapshot.data[index];
@@ -93,19 +86,23 @@ class _HorizontalViewState extends State<HorizontalView> {
               },
             ),
           );
-        } else if (snapshot.hasError) {
+        } else if (snapshot.connectionState == ConnectionState.none) {
           return Center(
             child: Column(
               children: <Widget>[
                 Text(
-                  "Sorry please check you intetnet connection",
+                  "No date was able to be fetched",
                   style: TextStyle(
-                    color: changeData.isDark == false ? Colors.black : Colors.white,
+                    color: changeData.isDark == false
+                        ? Colors.black
+                        : Colors.white,
                   ),
                 ),
                 RaisedButton(
-                  color: changeData.isDark == false ? Theme.of(context).primaryColor : darkColorTwo,
-                  onPressed: _rebuild,
+                  color: changeData.isDark == false
+                      ? Theme.of(context).primaryColor
+                      : darkColorTwo,
+                  onPressed: (){},
                   child: Text(
                     "Refresh",
                     style: TextStyle(color: Colors.white),
@@ -114,7 +111,7 @@ class _HorizontalViewState extends State<HorizontalView> {
               ],
             ),
           );
-        } else {
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Column(
             children: <Widget>[
               SizedBox(height: 10.0),
@@ -126,6 +123,15 @@ class _HorizontalViewState extends State<HorizontalView> {
                 ),
               ),
             ],
+          );
+        } else {
+          return Center(
+            child: Text(
+              "Could not fetch any data",
+              style: TextStyle(
+                color: changeData.isDark == false ? Colors.black : Colors.white,
+              ),
+            ),
           );
         }
       },
