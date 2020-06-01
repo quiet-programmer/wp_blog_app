@@ -5,39 +5,48 @@ import 'dart:convert';
 import 'package:wp_blog_app/models/posts.dart';
 
 class WpApi {
-  static const api = "https://www.naijaloaded.com.ng/wp-json/wp/v2/posts";
-  static const headers = {"Accept": "application/json"};
 
-  Future<List<Posts>> fetchTopPosts() async {
-    final response = await http.get(
+  static const api = "https://www.naijaloaded.com.ng/wp-json/wp/v2/posts?_embedded";
+  static const headers = {"Accept": "application/json"};
+  List<Posts> _posts = List();
+
+  Future<List<Posts>> _fetchTopPosts() async {
+
+    var response = await http.get(
       api,
       headers: headers,
     );
-    List<Posts> posts = List();
 
-    var convertDataToJson = json.decode(response.body);
+    var convertDataToJson = jsonDecode(response.body);
 
-      convertDataToJson.forEach((post) {
-        String title = post['title']['rendered'];
+    convertDataToJson.forEach((post) {
+      String title = post['title']['rendered'];
 
-        if (title.length > 30) {
-          title = post['title']['rendered'].substring(1, 20) + "...";
-        }
+      // if (title.length > 30) {
+      //   title = post['title']['rendered'].substring(0, 20) + "...";
+      //   print(title);
+      // }
 
-        var imageUrl = post['_embedded']['wp:featuredmedia'] != null
-            ? post['_embedded']['wp:featuredmedia'][0]['source_url']
-            : Container(
-                width: 100,
-                height: 100,
-                child: Image.network(
-                  'assets/images/img_error.jpg',
-                ),
-              );
-        var time = post['date'];
-        posts.add(Posts(title: title, image: imageUrl, time: time));
-      });
+      var imageUrl = post['_embedded']['wp:featuredmedia'] != null
+          ? post['_embedded']['wp:featuredmedia'][0]['source_url']
+          : Image.network(
+              'assets/images/img_error.jpg',
+            );
 
-    return posts;
+            print(imageUrl.toString());
+
+      var time = post['date'];
+      print(time.toString());
+
+      _posts.add(Posts(title: title, image: imageUrl, time: time));
+
+    });
+
+    return _posts;
+  }
+
+  Future<List<Posts>> get topPost {
+    return _fetchTopPosts();
   }
 
   Future<List<Posts>> fetchListPosts() async {
