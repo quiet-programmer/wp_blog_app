@@ -19,57 +19,89 @@ class _ListViewPostState extends State<ListViewPost> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final changeData = Provider.of<BrightnessProvider>(context);
-    return Container(
+    return Padding(
+      padding: EdgeInsets.only(left: 10),
       child: FutureBuilder(
         future: api.fetchListPosts(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Expanded(
-              child: Container(
-                child: ListView.builder(
-                  primary: false,
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: snapshot.data.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, index) {
-                    return InkWell(
-                      onTap: () {
-                        var title = snapshot.data[index];
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) {
-                            return PostView(
-                              posts: title,
-                            );
-                          }),
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.hasData) {
+            return ListView.builder(
+              primary: false,
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: snapshot.data.length,
+              itemBuilder: (_, index) {
+                return InkWell(
+                  onTap: () {
+                    var title = snapshot.data[index];
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) {
+                        return PostView(
+                          posts: title,
                         );
-                      },
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            width: 50,
-                            height: 80,
-                            margin: EdgeInsets.only(left: 20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(30.0),
-                              ),
-                            ),
-                            child: Image.network(
-                              snapshot.data[index].image,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ],
-                      ),
+                      }),
                     );
                   },
-                ),
-              ),
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 20, top: 20),
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          width: 100,
+                          height: 90,
+                          margin: EdgeInsets.only(left: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15.0),
+                            ),
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                  snapshot.data[index].image,
+                                ),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: Container(
+                            child: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    snapshot.data[index].title,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                    softWrap: true,
+                                    overflow: TextOverflow.fade,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
             );
-          } else if (snapshot.hasError) {
+          } else if (snapshot.connectionState == ConnectionState.none) {
             return Center(
               child: Column(
                 children: <Widget>[
@@ -78,7 +110,9 @@ class _ListViewPostState extends State<ListViewPost> {
                     style: TextStyle(color: Colors.white),
                   ),
                   RaisedButton(
-                    color: changeData.isDark == false ? Theme.of(context).accentColor : darkColor,
+                    color: changeData.isDark == false
+                        ? Theme.of(context).accentColor
+                        : darkColor,
                     onPressed: () {},
                     child: Text(
                       "Refresh",
@@ -88,17 +122,27 @@ class _ListViewPostState extends State<ListViewPost> {
                 ],
               ),
             );
-          } else {
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
             return Column(
               children: <Widget>[
+                SizedBox(height: 10.0),
                 Center(
                   child: Image.asset(
-                    'assets/images/pageloading.gif',
-                    width: MediaQuery.of(context).size.width,
+                    'assets/images/newLoading.gif',
+                    width: 350,
                     height: 200,
                   ),
                 ),
               ],
+            );
+          } else {
+            return Center(
+              child: Text(
+                "Could not fetch any data",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             );
           }
         },

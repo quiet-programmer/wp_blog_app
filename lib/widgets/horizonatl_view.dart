@@ -16,22 +16,27 @@ class HorizontalView extends StatefulWidget {
 class _HorizontalViewState extends State<HorizontalView> {
 
   WpApi api = WpApi();
+
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final changeData = Provider.of<BrightnessProvider>(context);
     return FutureBuilder(
-      future: api.topPost,
+      future: api.fetchTopPosts(),
       builder: (_, snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData){
           return Container(
             height: 230,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data.length,
               itemBuilder: (_, index) {
-                var formatedTime =
-                    DateFormat.m().format(snapshot.data[index].time);
-                    print(snapshot.data[index].time.toString());
+                // var formatedTime =
+                //     DateFormat.m().format(snapshot.data[index].time);
+                    // print(formatedTime.toString());
                 return InkWell(
                   onTap: () {
                     var title = snapshot.data[index];
@@ -67,16 +72,16 @@ class _HorizontalViewState extends State<HorizontalView> {
                             Text(
                               snapshot.data[index].title,
                               style: TextStyle(
-                                  color: Colors.black,
+                                  color: changeData.isDark == false ? Colors.black : Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
                             ),
-                            Text(
-                              "$formatedTime minutes ago",
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
+                            // Text(
+                            //   "$formatedTime minutes ago",
+                            //   style: TextStyle(
+                            //     color: Colors.grey,
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
@@ -117,7 +122,7 @@ class _HorizontalViewState extends State<HorizontalView> {
               SizedBox(height: 10.0),
               Center(
                 child: Image.asset(
-                  'assets/images/pageloading.gif',
+                  'assets/images/newLoading.gif',
                   width: 350,
                   height: 200,
                 ),

@@ -22,6 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: changeData.isDark == false ? mainColor : darkColorTwo,
       appBar: AppBar(
         leading: Icon(Icons.format_align_left),
+        centerTitle: true,
+        title: Text(
+          "NaijaTechGuy Blog",
+          style: TextStyle(
+            color: changeData.isDark == false ? Colors.black : Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          ),
+        ),
         actions: <Widget>[
           Icon(Icons.search),
           IconButton(
@@ -61,9 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                "Popular",
+                                "Latest",
                                 style: TextStyle(
-                                  color: changeData.isDark == false ? Colors.black : Colors.white,
+                                  color: changeData.isDark == false
+                                      ? Colors.black
+                                      : Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25.0,
                                 ),
@@ -84,11 +95,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 40.0),
+                padding: EdgeInsets.only(left: 30, bottom: 10, top: 15),
                 child: Column(
                   children: <Widget>[
                     Text(
-                      "Recent Articles",
+                      "Smart Phones",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0,
@@ -99,10 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 15.0,
-              ),
-              // ListViewPost(),
+              ListViewPost(),
             ],
           ),
         ),
