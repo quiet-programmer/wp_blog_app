@@ -1,6 +1,6 @@
 ## Wordpress Blog App
 
-A simple Flutter Blog Application, which fetches data from naijatechguy.com, which is a blog, using the blog api.
+A simple Flutter Blog Application, which fetches data from naijatechguy.com, which is a blog, using the blog api. Still working on it and new features will be added soon.
 
 ## Plugin's Used
 1. <p><b> Http </b></p> 
