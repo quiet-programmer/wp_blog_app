@@ -9,7 +9,7 @@ void main() {
       providers: [
         ChangeNotifierProvider.value(
           value: BrightnessProvider(),
-        )
+        ),
       ],
       child: App(),
     ),
