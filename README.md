@@ -1,6 +1,13 @@
-# wp_blog_app
+## Wordpress Blog App
 
 A simple Flutter Blog Application, which fetches data from naijatechguy.com, which is a blog, using the blog api.
+
+## Plugin's Used
+1. <p><b> Http </b></p> 
+2. <p><b> Html (To remove html formats from text) </b></p>
+3. <p><b> Intl (Date formater) </b></p>
+4. <p><b> Provider (Manage State) </b></p>
+5. <p><b> Shared Prefernces </b></p>
 
 <table>
   <tbody>
