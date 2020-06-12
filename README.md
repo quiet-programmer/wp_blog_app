@@ -12,7 +12,7 @@ A simple Flutter Blog Application, which fetches data from naijatechguy.com, whi
 <table>
   <tbody>
     <tr>
-      <td><img src='https://github.com/quiet-programmer/wp_blog_app/blob/master/ss/naijatechguy.gif' width='600' height='600'></td>
+      <td><img src='https://github.com/quiet-programmer/wp_blog_app/blob/master/ss/naijatechguy.gif' width='650' height='600'></td>
      </tr>
   </tbody>
 </table>
