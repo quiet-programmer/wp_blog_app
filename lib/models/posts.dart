@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
+
 class Posts {
 
   final String title, image;
-  final DateTime time;
+  final String time;
+  final String authur;
 
-  Posts({this.title, this.image, this.time});
+  Posts({@required this.title, this.image, this.time, this.authur});
 }
