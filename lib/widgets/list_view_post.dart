@@ -19,8 +19,8 @@ class _ListViewPostState extends State<ListViewPost> {
   }
 
   @override
-  void initState() {
-    super.initState();
+  void reassemble() {
+    super.reassemble();
   }
 
   @override
@@ -106,19 +106,9 @@ class _ListViewPostState extends State<ListViewPost> {
               child: Column(
                 children: <Widget>[
                   Text(
-                    "Sorry please check you intetnet connection",
+                    "Sorry please check you intetnet connection, and swipe on pull down to refresh",
                     style: TextStyle(color: Colors.white),
                   ),
-                  RaisedButton(
-                    color: changeData.isDark == false
-                        ? Theme.of(context).accentColor
-                        : darkColor,
-                    onPressed: () {},
-                    child: Text(
-                      "Refresh",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
                 ],
               ),
             );
@@ -137,10 +127,15 @@ class _ListViewPostState extends State<ListViewPost> {
             );
           } else {
             return Center(
-              child: Text(
-                "Could not fetch any data",
-                style: TextStyle(
-                  color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  "Please check if you are connected to the internet and swipe or pull down to refresh",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  softWrap: true,
+                  textAlign: TextAlign.center,
                 ),
               ),
             );
