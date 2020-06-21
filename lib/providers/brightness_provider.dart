@@ -9,11 +9,14 @@ class BrightnessProvider with ChangeNotifier {
     return isDark = !isDark;
   }
 
-  //store the state
-  void saveState() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    var getIsDark = (pref.getBool('isDark') ?? changeTheme());
-    await pref.setBool('isDark', getIsDark);
+  Future<bool> getState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final isBright = prefs.getBool('isDark');
     notifyListeners();
+    if(isBright == null) {
+      return changeTheme();
+    }
+    return isBright;
   }
+
 }
