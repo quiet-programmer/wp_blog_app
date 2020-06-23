@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:hive/hive.dart';
 import 'package:wp_blog_app/providers/brightness_provider.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
 // import 'package:flutter_wordpress/flutter_wordpress.dart' as wp;
@@ -18,7 +18,7 @@ class _HorizontalViewState extends State<HorizontalView> {
   
   @override
   Widget build(BuildContext context) {
-    final changeData = Provider.of<BrightnessProvider>(context);
+    final BrightnessProvider changeData = Hive.box(appState).get('state');
     return FutureBuilder(
       future: api.fetchTopPosts(),
       builder: (_, snapshot) {
