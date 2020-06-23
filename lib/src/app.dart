@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:wp_blog_app/providers/brightness_provider.dart';
 import 'package:wp_blog_app/screens/home_screen.dart';
@@ -14,7 +15,8 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    final changeData = Provider.of<BrightnessProvider>(context);
+    // final changeData = Provider.of<BrightnessProvider>(context);
+    final BrightnessProvider changeData = Hive.box(appState).get('state');
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'WP Flutter Blog Demo',
