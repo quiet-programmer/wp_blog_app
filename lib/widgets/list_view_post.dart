@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:wp_blog_app/providers/brightness_provider.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
 
 import '../wp_api.dart';
-import '../const_values.dart';
 
 class ListViewPost extends StatefulWidget {
   @override
@@ -19,13 +16,7 @@ class _ListViewPostState extends State<ListViewPost> {
   }
 
   @override
-  void reassemble() {
-    super.reassemble();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final changeData = Provider.of<BrightnessProvider>(context);
     return Padding(
       padding: EdgeInsets.only(left: 10),
       child: FutureBuilder(
