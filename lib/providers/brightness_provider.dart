@@ -1,22 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
 
-class BrightnessProvider with ChangeNotifier {
+part 'brightness_provider.g.dart';
+
+@HiveType(typeId: 0)
+class BrightnessProvider {
+  @HiveField(0)
   bool isDark = false;
 
-  Future<bool> changeTheme() async {
-    notifyListeners();
-    return isDark = !isDark;
-  }
-
-  Future<bool> getState() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final isBright = prefs.getBool('isDark');
-    notifyListeners();
-    if(isBright == null) {
-      return changeTheme();
-    }
-    return isBright;
+  void changeTheme()  {
+    isDark = !isDark;
   }
 
 }
