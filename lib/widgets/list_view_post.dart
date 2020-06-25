@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
 
 import '../wp_api.dart';
@@ -13,6 +14,10 @@ class _ListViewPostState extends State<ListViewPost> {
 
   String formatDateTime(DateTime dateTime) {
     return "${dateTime.day}/${dateTime.month}/${dateTime.year}";
+  }
+
+  displayTime(String date) {
+    return DateFormat.yMMMMEEEEd().format(DateTime.parse(date));
   }
 
   @override
@@ -32,11 +37,11 @@ class _ListViewPostState extends State<ListViewPost> {
               itemBuilder: (_, index) {
                 return InkWell(
                   onTap: () {
-                    var title = snapshot.data[index];
+                    var post = snapshot.data[index];
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) {
                         return PostView(
-                          posts: title,
+                          posts: post,
                         );
                       }),
                     );
@@ -68,6 +73,7 @@ class _ListViewPostState extends State<ListViewPost> {
                         Expanded(
                           child: Container(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -80,6 +86,15 @@ class _ListViewPostState extends State<ListViewPost> {
                                     ),
                                     softWrap: true,
                                     overflow: TextOverflow.fade,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${displayTime(snapshot.data[index].time)}",
+                                    style: TextStyle(
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                 ),
                               ],
