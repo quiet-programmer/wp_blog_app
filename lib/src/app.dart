@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:provider/provider.dart';
 import 'package:wp_blog_app/providers/brightness_provider.dart';
 import 'package:wp_blog_app/screens/home_screen.dart';
 
