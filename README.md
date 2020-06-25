@@ -7,7 +7,13 @@ A simple Flutter Blog Application, which fetches data from naijatechguy.com, whi
 2. <p><b> Html (To remove html formats from text) </b></p>
 3. <p><b> Intl (Date formater) </b></p>
 4. <p><b> Provider (Manage State) </b></p>
-5. <p><b> Shared Prefernces </b></p>
+5. <p><b> Hive </b></p>
+6. <p><b> Auto Size Text </b></p>
+6. <p><b> Pull to Refresh </b></p>
+
+<p>
+You can fork or clone the repo and send a pull request, any help to make the app better will be accepted. Thank you.
+</p>
 
 <table>
   <tbody>
