@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -8,6 +9,14 @@ class WpApi {
   static const api = "https://www.naijatechguy.com/wp-json/wp/v2/";
   static const listApi = "https://www.naijatechguy.com/wp-json/wp/v2/";
   static const headers = {"Accept": "application/json"};
+
+  String _parseHtmlString(String htmlString) {
+    var document = parse(htmlString);
+
+    String parsedString = parse(document.body.text).documentElement.text;
+
+    return parsedString;
+  }
 
   Future<List<Posts>> fetchTopPosts() async {
     var response = await http.get(
@@ -20,11 +29,15 @@ class WpApi {
     List<Posts> posts = [];
 
     convertDataToJson.forEach((post) {
-      String title = post['title']['rendered'];
+      String title = _parseHtmlString(post['title']['rendered']);
 
-      if (title.length > 30) {
-        title = post['title']['rendered'].substring(0, 20) + "...";
-      }
+      // if (title.length > 30) {
+      //   title = _parseHtmlString(post['title']['rendered']).substring(0, 20) + "...";
+      // }
+
+      var time = post['date'];
+
+      var content = _parseHtmlString(post['content']['rendered']);
 
       var imageUrl = post['_embedded']['wp:featuredmedia'] != null
           ? post['_embedded']['wp:featuredmedia'][0]['source_url']
@@ -34,7 +47,7 @@ class WpApi {
 
       // var time = post['date'];
 
-      posts.add(Posts(title: title, image: imageUrl));
+      posts.add(Posts(title: title, image: imageUrl, contents: content, time: time));
     });
 
     return posts;
@@ -51,11 +64,14 @@ class WpApi {
     List<Posts> posts = [];
 
     convertDataToJson.forEach((post) {
-      String title = post['title']['rendered'];
+      String title = _parseHtmlString(post['title']['rendered']);
 
-      if (title.length > 30) {
-        title = post['title']['rendered'].substring(0, 50) + "...";
-      }
+      // if (title.length > 30) {
+      //   title = _parseHtmlString(post['title']['rendered']).substring(0, 50) + "...";
+      // }
+
+      var content = _parseHtmlString(post['content']['rendered']);
+      var time = post['date'];
 
       var imageUrl = post['_embedded']['wp:featuredmedia'] != null
           ? post['_embedded']['wp:featuredmedia'][0]['source_url']
@@ -68,7 +84,7 @@ class WpApi {
 
       // var time = post['date'];
 
-      posts.add(Posts(title: title, image: imageUrl));
+      posts.add(Posts(title: title, image: imageUrl, contents: content, time: time));
     });
 
     return posts;
