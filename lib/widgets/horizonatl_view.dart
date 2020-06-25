@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:wp_blog_app/providers/brightness_provider.dart';
@@ -13,16 +14,16 @@ class HorizontalView extends StatefulWidget {
 }
 
 class _HorizontalViewState extends State<HorizontalView> {
-
   WpApi api = WpApi();
-  
+
   @override
   Widget build(BuildContext context) {
     final BrightnessProvider changeData = Hive.box(appState).get('state');
     return FutureBuilder(
       future: api.fetchTopPosts(),
       builder: (_, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.hasData) {
           return Container(
             height: 230,
             child: ListView.builder(
@@ -31,14 +32,14 @@ class _HorizontalViewState extends State<HorizontalView> {
               itemBuilder: (_, index) {
                 // var formatedTime =
                 //     DateFormat.m().format(snapshot.data[index].time);
-                    // print(formatedTime.toString());
+                // print(formatedTime.toString());
                 return InkWell(
                   onTap: () {
-                    var title = snapshot.data[index];
+                    var post = snapshot.data[index];
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) {
                         return PostView(
-                          posts: title,
+                          posts: post,
                         );
                       }),
                     );
@@ -64,12 +65,18 @@ class _HorizontalViewState extends State<HorizontalView> {
                         padding: EdgeInsets.all(5.0),
                         child: Column(
                           children: <Widget>[
-                            Text(
+                            AutoSizeText(
                               snapshot.data[index].title,
                               style: TextStyle(
-                                  color: changeData.isDark == false ? Colors.black : Colors.white,
+                                  color: changeData.isDark == false
+                                      ? Colors.black
+                                      : Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
+                              maxLines: 2,
+                              minFontSize: 15,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
                             ),
                             // Text(
                             //   "$formatedTime minutes ago",
@@ -121,7 +128,8 @@ class _HorizontalViewState extends State<HorizontalView> {
               child: Text(
                 "Please check if you are connected to the internet and swipe or pull down to refresh",
                 style: TextStyle(
-                  color: changeData.isDark == false ? Colors.black : Colors.white,
+                  color:
+                      changeData.isDark == false ? Colors.black : Colors.white,
                 ),
                 softWrap: true,
                 textAlign: TextAlign.center,
