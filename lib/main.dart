@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
@@ -17,10 +16,5 @@ void main() async {
   if (stateOfApp.get('state') == null) {
     stateOfApp.put("state", Posts());
   }
-  runApp(
-    WatchBoxBuilder(
-      box: Hive.box(appState),
-      builder: (_, box) => App(),
-    ),
-  );
+  runApp(App());
 }
