@@ -3,7 +3,6 @@ import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
-import 'package:wp_blog_app/providers/brightness_provider.dart';
 
 class PostView extends StatefulWidget {
   final Posts posts;
@@ -20,7 +19,7 @@ class _PostViewState extends State<PostView> {
 
   @override
   Widget build(BuildContext context) {
-    final BrightnessProvider changeData = Hive.box(appState).get('state');
+    final Posts changeData = Hive.box(appState).get('state');
     return Scaffold(
       backgroundColor: changeData.isDark == false ? mainColor : darkColorTwo,
       body: SingleChildScrollView(
