@@ -44,30 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return SafeArea(
           top: true,
           child: Scaffold(
-            backgroundColor:
-                changeData.isDark == false ? mainColor : darkColorTwo,
-            // appBar: AppBar(
-            //   centerTitle: true,
-            //   title: Text(
-            //     "NaijaTechGuy Blog",
-            //     style: TextStyle(
-            //       color: changeData.isDark == false ? Colors.black : Colors.white,
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 20.0,
-            //     ),
-            //   ),
-            //   actions: <Widget>[
-            //     Icon(Icons.search),
-            //     IconButton(
-            //       icon: Icon(
-            //           changeData.isDark ? Icons.brightness_6 : Icons.brightness_3),
-            //       onPressed: () {
-            //         changeData.changeTheme();
-            //         Hive.box(appState).put("state", changeData);
-            //       },
-            //     )
-            //   ],
-            // ),
+            backgroundColor: changeData.isDark == false ? mainColor : darkColor,
             body: RefreshIndicator(
               onRefresh: refreshPage,
               child: SingleChildScrollView(
