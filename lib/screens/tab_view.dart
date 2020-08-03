@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
-import 'package:wp_blog_app/screens/bookmark.dart';
 import 'package:wp_blog_app/screens/category.dart';
 import 'package:wp_blog_app/screens/home_screen.dart';
 import 'package:wp_blog_app/screens/settings.dart';
-import 'package:wp_blog_app/widgets/horizonatl_view.dart';
-import 'package:wp_blog_app/widgets/list_view_post.dart';
 
 class TabView extends StatefulWidget {
   @override
@@ -22,9 +19,6 @@ class _TabViewState extends State<TabView> {
     },
     {
       'page': Category(),
-    },
-    {
-      'page': Bookmark(),
     },
     {
       'page': Settings(),
@@ -84,26 +78,19 @@ class _TabViewState extends State<TabView> {
                 changeData.isDark == false ? defaultBlack : defaultWhite,
           ),
           BottomNavyBarItem(
-              icon: Icon(Icons.list),
-              title: Text('Category'),
-              activeColor:
-                  changeData.isDark == false ? mainColor : defaultWhite,
-              inactiveColor:
-                  changeData.isDark == false ? defaultBlack : defaultWhite),
+            icon: Icon(Icons.list),
+            title: Text('Category'),
+            activeColor: changeData.isDark == false ? mainColor : defaultWhite,
+            inactiveColor:
+                changeData.isDark == false ? defaultBlack : defaultWhite,
+          ),
           BottomNavyBarItem(
-              icon: Icon(Icons.bookmark),
-              title: Text('Bookmark'),
-              activeColor:
-                  changeData.isDark == false ? mainColor : defaultWhite,
-              inactiveColor:
-                  changeData.isDark == false ? defaultBlack : defaultWhite),
-          BottomNavyBarItem(
-              icon: Icon(Icons.info),
-              title: Text('About'),
-              activeColor:
-                  changeData.isDark == false ? mainColor : defaultWhite,
-              inactiveColor:
-                  changeData.isDark == false ? defaultBlack : defaultWhite)
+            icon: Icon(Icons.info),
+            title: Text('About'),
+            activeColor: changeData.isDark == false ? mainColor : defaultWhite,
+            inactiveColor:
+                changeData.isDark == false ? defaultBlack : defaultWhite,
+          )
         ],
       ),
     );
