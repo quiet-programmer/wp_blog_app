@@ -47,12 +47,14 @@ class WpApi {
 
       // var time = post['date'];
 
-      posts.add(Posts(title: title, image: imageUrl, contents: content, time: time));
+      posts.add(
+          Posts(title: title, image: imageUrl, contents: content, time: time));
     });
 
     return posts;
   }
 
+  // call for all Game articles
   Future<List<Posts>> fetchListPosts() async {
     var response = await http.get(
       Uri.encodeFull(listApi + "posts?_embed&categories=467"),
@@ -84,10 +86,10 @@ class WpApi {
 
       // var time = post['date'];
 
-      posts.add(Posts(title: title, image: imageUrl, contents: content, time: time));
+      posts.add(
+          Posts(title: title, image: imageUrl, contents: content, time: time));
     });
 
     return posts;
   }
-
 }
