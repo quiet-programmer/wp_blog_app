@@ -1,9 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:wp_blog_app/providers/brightness_provider.dart';
+import 'package:wp_blog_app/models/posts.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
-// import 'package:flutter_wordpress/flutter_wordpress.dart' as wp;
 
 import '../wp_api.dart';
 import '../const_values.dart';
@@ -18,21 +17,18 @@ class _HorizontalViewState extends State<HorizontalView> {
 
   @override
   Widget build(BuildContext context) {
-    final BrightnessProvider changeData = Hive.box(appState).get('state');
+    final Posts changeData = Hive.box(appState).get('state');
     return FutureBuilder(
       future: api.fetchTopPosts(),
       builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
           return Container(
-            height: 230,
+            height: 220,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data.length,
               itemBuilder: (_, index) {
-                // var formatedTime =
-                //     DateFormat.m().format(snapshot.data[index].time);
-                // print(formatedTime.toString());
                 return InkWell(
                   onTap: () {
                     var post = snapshot.data[index];
@@ -47,25 +43,26 @@ class _HorizontalViewState extends State<HorizontalView> {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        width: 200,
+                        width: 250,
                         height: 150,
                         margin: EdgeInsets.only(left: 20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(30.0),
+                            Radius.circular(15.0),
+                          ),
+                          image: DecorationImage(
+                            image: NetworkImage(snapshot.data[index].image),
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        child: Image.network(
-                          snapshot.data[index].image,
-                          fit: BoxFit.cover,
-                        ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        padding: EdgeInsets.all(5.0),
-                        child: Column(
-                          children: <Widget>[
-                            AutoSizeText(
+                      Expanded(
+                        child: Container(
+                          width: 250,
+                          padding: EdgeInsets.only(left: 5.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: AutoSizeText(
                               snapshot.data[index].title,
                               style: TextStyle(
                                   color: changeData.isDark == false
@@ -75,16 +72,10 @@ class _HorizontalViewState extends State<HorizontalView> {
                                   fontSize: 18),
                               maxLines: 2,
                               minFontSize: 15,
-                              overflow: TextOverflow.ellipsis,
+                              overflow: TextOverflow.fade,
                               softWrap: true,
                             ),
-                            // Text(
-                            //   "$formatedTime minutes ago",
-                            //   style: TextStyle(
-                            //     color: Colors.grey,
-                            //   ),
-                            // ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
