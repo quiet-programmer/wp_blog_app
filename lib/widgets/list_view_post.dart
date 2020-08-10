@@ -54,7 +54,7 @@ class _ListViewPostState extends State<ListViewPost> {
                       children: <Widget>[
                         Container(
                           width: 100,
-                          height: 90,
+                          height: 100,
                           margin: EdgeInsets.only(left: 20),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(
@@ -74,6 +74,7 @@ class _ListViewPostState extends State<ListViewPost> {
                           child: Container(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
