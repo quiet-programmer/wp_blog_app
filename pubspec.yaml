@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_local_notifications: ^1.4.4+3
   workmanager: ^0.2.3
+  cached_network_image: ^2.3.2+1
 
 dev_dependencies:
   flutter_test:
