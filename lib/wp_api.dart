@@ -20,7 +20,7 @@ class WpApi {
 
   Future<List<Posts>> fetchTopPosts() async {
     var response = await http.get(
-      Uri.encodeFull(api + "posts?_embed"),
+      Uri.encodeFull(api + "posts?_embed&categories=417"),
       headers: headers,
     );
 
@@ -44,8 +44,6 @@ class WpApi {
           : Image.network(
               'assets/images/img_error.jpg',
             );
-
-      // var time = post['date'];
 
       posts.add(
           Posts(title: title, image: imageUrl, contents: content, time: time));
