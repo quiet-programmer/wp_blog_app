@@ -74,7 +74,7 @@ class _SettingsState extends State<Settings> {
                             : defaultWhite,
                       ),
                     ),
-                    trailing: Switch(value: true, onChanged: (val) {}),
+                    trailing: Switch(value: true, onChanged: null),
                   ),
                   Divider(
                     color: changeData.isDark == false
