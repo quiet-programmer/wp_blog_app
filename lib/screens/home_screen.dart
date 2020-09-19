@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "Latest",
+                                        "Reviews",
                                         style: TextStyle(
                                           color: changeData.isDark == false
                                               ? Colors.black
