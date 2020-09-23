@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:wp_blog_app/models/posts.dart';
@@ -50,10 +51,12 @@ class _HorizontalViewState extends State<HorizontalView> {
                           borderRadius: BorderRadius.all(
                             Radius.circular(15.0),
                           ),
-                          image: DecorationImage(
-                            image: NetworkImage(snapshot.data[index].image),
-                            fit: BoxFit.cover,
-                          ),
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: snapshot.data[index].image,
+                          fit: BoxFit.cover,
+                          width: 250,
+                          height: 150,
                         ),
                       ),
                       Expanded(
@@ -89,13 +92,30 @@ class _HorizontalViewState extends State<HorizontalView> {
             child: Column(
               children: <Widget>[
                 Text(
-                  "Sorry please check you intetnet connection, and swipe on pull down to refresh",
+                  "Sorry please check you intetnet connection, and swipe on pull down to refresh \n \n Or",
                   style: TextStyle(
                     color: changeData.isDark == false
                         ? Colors.black
                         : Colors.white,
                   ),
                 ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                FlatButton(
+                  color: changeData.isDark == false
+                      ? mainColor
+                      : Colors.transparent,
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text(
+                    "Refresh",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                )
               ],
             ),
           );
@@ -114,17 +134,36 @@ class _HorizontalViewState extends State<HorizontalView> {
           );
         } else {
           return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                "Please check if you are connected to the internet and swipe or pull down to refresh",
-                style: TextStyle(
-                  color:
-                      changeData.isDark == false ? Colors.black : Colors.white,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    "Please check if you are connected to the internet and swipe or pull down to refresh \n \n Or",
+                    style: TextStyle(
+                      color: changeData.isDark == false
+                          ? Colors.black
+                          : Colors.white,
+                    ),
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                softWrap: true,
-                textAlign: TextAlign.center,
-              ),
+                FlatButton(
+                  color: changeData.isDark == false
+                      ? mainColor
+                      : Colors.transparent,
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text(
+                    "Refresh",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              ],
             ),
           );
         }
