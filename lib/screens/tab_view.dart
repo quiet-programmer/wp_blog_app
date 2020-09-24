@@ -53,7 +53,6 @@ class _TabViewState extends State<TabView> {
           ),
         ),
         actions: <Widget>[
-          Icon(Icons.search),
           IconButton(
             icon: Icon(
                 changeData.isDark ? Icons.brightness_6 : Icons.brightness_3),
