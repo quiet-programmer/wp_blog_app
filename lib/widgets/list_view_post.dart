@@ -1,5 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:wp_blog_app/const_values.dart';
+import 'package:wp_blog_app/models/posts.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
 
 import '../wp_api.dart';
@@ -22,6 +26,7 @@ class _ListViewPostState extends State<ListViewPost> {
 
   @override
   Widget build(BuildContext context) {
+    final Posts changeData = Hive.box(appState).get('state');
     return Padding(
       padding: EdgeInsets.only(left: 10),
       child: FutureBuilder(
@@ -61,10 +66,17 @@ class _ListViewPostState extends State<ListViewPost> {
                               Radius.circular(15.0),
                             ),
                             image: DecorationImage(
-                                image: NetworkImage(
-                                  snapshot.data[index].image,
-                                ),
-                                fit: BoxFit.cover),
+                              image: NetworkImage(
+                                snapshot.data[index].image,
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: CachedNetworkImage(
+                            imageUrl: snapshot.data[index].image,
+                            fit: BoxFit.cover,
+                            width: 100,
+                            height: 100,
                           ),
                         ),
                         SizedBox(
@@ -113,9 +125,23 @@ class _ListViewPostState extends State<ListViewPost> {
               child: Column(
                 children: <Widget>[
                   Text(
-                    "Sorry please check you intetnet connection, and swipe on pull down to refresh",
+                    "Sorry please check you intetnet connection, and swipe on pull down to refresh \n \n Or",
                     style: TextStyle(color: Colors.white),
                   ),
+                  FlatButton(
+                    color: changeData.isDark == false
+                        ? mainColor
+                        : Colors.transparent,
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    child: Text(
+                      "Refresh",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
                 ],
               ),
             );
@@ -134,16 +160,34 @@ class _ListViewPostState extends State<ListViewPost> {
             );
           } else {
             return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  "Please check if you are connected to the internet and swipe or pull down to refresh",
-                  style: TextStyle(
-                    color: Colors.white,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      "Please check if you are connected to the internet and swipe or pull down to refresh \n \n Or",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                ),
+                  FlatButton(
+                    color: changeData.isDark == false
+                        ? mainColor
+                        : Colors.transparent,
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    child: Text(
+                      "Refresh",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                ],
               ),
             );
           }
