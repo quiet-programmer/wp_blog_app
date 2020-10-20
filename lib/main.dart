@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wp_blog_app/const_values.dart';
@@ -16,5 +17,10 @@ void main() async {
   if (stateOfApp.get('state') == null) {
     stateOfApp.put("state", Posts());
   }
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(App());
 }
