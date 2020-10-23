@@ -11,6 +11,7 @@ A simple Flutter Blog Application, which fetches data from naijatechguy.com, whi
 6. <p><b> Auto Size Text </b></p>
 6. <p><b> Pull to Refresh </b></p>
 7. <p><b> Shimmer </b></p>
+7. <p><b> Cached Network Image (To cache image) </b></p>
 
 <p>
 You can fork or clone the repo and send a pull request, any help to make the app better will be accepted. Thank you.
