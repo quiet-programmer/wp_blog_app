@@ -17,6 +17,7 @@ A simple Flutter Blog Application, which fetches data from naijatechguy.com, whi
 You can fork or clone the repo and send a pull request, any help to make the app better will be accepted. Thank you.
 </p>
 
+<center>
 <table>
   <tbody>
     <tr>
@@ -24,6 +25,7 @@ You can fork or clone the repo and send a pull request, any help to make the app
      </tr>
   </tbody>
 </table>
+</center>
 
 ## Getting Started
 
