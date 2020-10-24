@@ -20,7 +20,7 @@ You can fork or clone the repo and send a pull request, any help to make the app
 <table>
   <tbody>
     <tr>
-      <td><img src='https://github.com/quiet-programmer/wp_blog_app/blob/master/ss/naijatechguy.gif' width='650' height='600'></td>
+      <td><img src='https://github.com/quiet-programmer/wp_blog_app/blob/master/ss/naijtechguyTwo.gif' width='300' height='600'></td>
      </tr>
   </tbody>
 </table>
