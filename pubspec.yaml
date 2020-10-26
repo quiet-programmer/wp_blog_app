@@ -14,36 +14,34 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.0+4
-  html: ^0.14.0+3
-  intl: ^0.16.1
-  provider: ^4.1.2
-  pull_to_refresh: ^1.5.8
+  auto_size_text: ^2.1.0
+  bottom_navy_bar: ^5.4.0
+  cached_network_image: ^2.3.2+1
+  cupertino_icons: ^0.1.2
+  flutter_local_notifications: ^2.0.2
   hive: ^1.4.1+1
   hive_flutter: ^0.3.0+2
-  path_provider: ^1.6.11
-  auto_size_text: ^2.1.0
-  shimmer: ^1.1.1
-  bottom_navy_bar: ^5.4.0
+  html: ^0.14.0+3
+  http: ^0.12.0+4
+  intl: ^0.16.1
   launch_review: ^2.0.0
+  path_provider: ^1.6.11
+  provider: ^4.1.2
+  pull_to_refresh: ^1.5.8
   share: ^0.6.4+3
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
-  cached_network_image: ^2.3.2+1
+  shimmer: ^1.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: 
-  hive_generator: 
-  change_app_package_name:
+  build_runner: null
+  change_app_package_name: null
+  hive_generator: null
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
