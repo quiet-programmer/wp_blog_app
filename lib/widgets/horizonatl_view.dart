@@ -25,14 +25,14 @@ class _HorizontalViewState extends State<HorizontalView> {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
           return Container(
-            height: 220,
+            height: setContainerHeight(220),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data.length,
               itemBuilder: (_, index) {
+                Posts post = snapshot.data[index];
                 return InkWell(
                   onTap: () {
-                    var post = snapshot.data[index];
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) {
                         return PostView(
@@ -43,36 +43,58 @@ class _HorizontalViewState extends State<HorizontalView> {
                   },
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        width: 250,
-                        height: 150,
-                        margin: EdgeInsets.only(left: 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15.0),
-                          ),
-                        ),
-                        child: CachedNetworkImage(
-                          imageUrl: snapshot.data[index].image,
-                          fit: BoxFit.cover,
-                          width: 250,
-                          height: 150,
-                        ),
-                      ),
+                      post.image != null
+                          ? Container(
+                              width: setContainerWidth(250),
+                              height: setContainerHeight(150),
+                              margin: EdgeInsets.only(left: 20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(15.0),
+                                ),
+                              ),
+                              child: CachedNetworkImage(
+                                imageUrl: post.image,
+                                fit: BoxFit.cover,
+                                width: setContainerWidth(250),
+                                height: setContainerHeight(150),
+                                placeholder: (_, url) {
+                                  return Image.asset(
+                                    'assets/images/newLoading.gif',
+                                    width: 50,
+                                    height: 50,
+                                  );
+                                },
+                              ),
+                            )
+                          : Container(
+                              width: setContainerWidth(250),
+                              height: setContainerHeight(150),
+                              margin: EdgeInsets.only(left: 20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(15.0),
+                                ),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "assets/img_error.jpg",
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                       Expanded(
                         child: Container(
-                          width: 250,
+                          width: setContainerWidth(250),
                           padding: EdgeInsets.only(left: 5.0),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: AutoSizeText(
-                              snapshot.data[index].title,
+                              post.title,
                               style: TextStyle(
-                                  color: changeData.isDark == false
-                                      ? Colors.black
-                                      : Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
+                                fontWeight: FontWeight.bold,
+                                fontSize: setTextSize(18),
+                              ),
                               maxLines: 2,
                               minFontSize: 15,
                               overflow: TextOverflow.fade,
@@ -93,27 +115,21 @@ class _HorizontalViewState extends State<HorizontalView> {
               children: <Widget>[
                 Text(
                   "Sorry please check you intetnet connection, and swipe on pull down to refresh \n \n Or",
-                  style: TextStyle(
-                    color: changeData.isDark == false
-                        ? Colors.black
-                        : Colors.white,
-                  ),
+                  style: TextStyle(),
                 ),
                 SizedBox(
                   height: 20.0,
                 ),
                 FlatButton(
                   color: changeData.isDark == false
-                      ? mainColor
+                      ? subColor
                       : Colors.transparent,
                   onPressed: () {
                     setState(() {});
                   },
                   child: Text(
                     "Refresh",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                    style: TextStyle(color: defaultWhite),
                   ),
                 )
               ],
@@ -140,18 +156,14 @@ class _HorizontalViewState extends State<HorizontalView> {
                   padding: const EdgeInsets.all(20.0),
                   child: Text(
                     "Please check if you are connected to the internet and swipe or pull down to refresh \n \n Or",
-                    style: TextStyle(
-                      color: changeData.isDark == false
-                          ? Colors.black
-                          : Colors.white,
-                    ),
+                    style: TextStyle(),
                     softWrap: true,
                     textAlign: TextAlign.center,
                   ),
                 ),
                 FlatButton(
                   color: changeData.isDark == false
-                      ? mainColor
+                      ? subColor
                       : Colors.transparent,
                   onPressed: () {
                     setState(() {});
@@ -159,7 +171,7 @@ class _HorizontalViewState extends State<HorizontalView> {
                   child: Text(
                     "Refresh",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: defaultWhite,
                     ),
                   ),
                 )
