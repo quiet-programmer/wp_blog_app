@@ -36,5 +36,8 @@ lib/generated_plugin_registrant.dart
 #size configuration settings
 lib/size_config.dart
 
+# store key properties
+android/key.properties
+
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
