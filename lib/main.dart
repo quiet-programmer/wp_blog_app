@@ -8,7 +8,7 @@ import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
 import 'package:wp_blog_app/src/app.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Directory document = await getApplicationDocumentsDirectory();
   Hive.registerAdapter(PostsAdapter());
