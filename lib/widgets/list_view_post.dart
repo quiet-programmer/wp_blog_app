@@ -40,9 +40,9 @@ class _ListViewPostState extends State<ListViewPost> {
               shrinkWrap: true,
               itemCount: snapshot.data.length,
               itemBuilder: (_, index) {
+                Posts post = snapshot.data[index];
                 return InkWell(
                   onTap: () {
-                    var post = snapshot.data[index];
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) {
                         return PostView(
@@ -58,25 +58,26 @@ class _ListViewPostState extends State<ListViewPost> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                          width: 100,
-                          height: 100,
+                          width: setContainerWidth(100),
+                          height: setContainerHeight(100),
                           margin: EdgeInsets.only(left: 20),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(
                               Radius.circular(15.0),
                             ),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                snapshot.data[index].image,
-                              ),
-                              fit: BoxFit.cover,
-                            ),
                           ),
                           child: CachedNetworkImage(
-                            imageUrl: snapshot.data[index].image,
+                            imageUrl: post.image,
                             fit: BoxFit.cover,
-                            width: 100,
-                            height: 100,
+                            width: setContainerWidth(100),
+                            height: setContainerHeight(100),
+                            placeholder: (_, url) {
+                              return Image.asset(
+                                'assets/images/newLoading.gif',
+                                width: 50,
+                                height: 50,
+                              );
+                            },
                           ),
                         ),
                         SizedBox(
@@ -91,23 +92,20 @@ class _ListViewPostState extends State<ListViewPost> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    snapshot.data[index].title,
+                                    post.title.substring(0, 20) + "...",
                                     style: TextStyle(
-                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18,
+                                      fontSize: setTextSize(18),
                                     ),
                                     softWrap: true,
                                     overflow: TextOverflow.fade,
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "${displayTime(snapshot.data[index].time)}",
-                                    style: TextStyle(
-                                      color: Colors.grey[200],
-                                    ),
+                                    "${displayTime(post.time)}",
+                                    style: TextStyle(),
                                   ),
                                 ),
                               ],
@@ -126,20 +124,18 @@ class _ListViewPostState extends State<ListViewPost> {
                 children: <Widget>[
                   Text(
                     "Sorry please check you intetnet connection, and swipe on pull down to refresh \n \n Or",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(),
                   ),
                   FlatButton(
                     color: changeData.isDark == false
-                        ? mainColor
+                        ? subColor
                         : Colors.transparent,
                     onPressed: () {
                       setState(() {});
                     },
                     child: Text(
                       "Refresh",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+                      style: TextStyle(),
                     ),
                   )
                 ],
@@ -166,25 +162,21 @@ class _ListViewPostState extends State<ListViewPost> {
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
                       "Please check if you are connected to the internet and swipe or pull down to refresh \n \n Or",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+                      style: TextStyle(),
                       softWrap: true,
                       textAlign: TextAlign.center,
                     ),
                   ),
                   FlatButton(
                     color: changeData.isDark == false
-                        ? mainColor
+                        ? subColor
                         : Colors.transparent,
                     onPressed: () {
                       setState(() {});
                     },
                     child: Text(
                       "Refresh",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+                      style: TextStyle(),
                     ),
                   )
                 ],
