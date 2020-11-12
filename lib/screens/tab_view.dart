@@ -65,28 +65,29 @@ class _TabViewState extends State<TabView> {
       ),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavyBar(
-        backgroundColor: changeData.isDark == false ? defaultWhite : darkColor,
+        backgroundColor:
+            changeData.isDark == false ? defaultWhite : Colors.grey[850],
         selectedIndex: _selectedPageIndex,
         onItemSelected: _selectPage,
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
-            activeColor: changeData.isDark == false ? mainColor : defaultWhite,
+            activeColor: changeData.isDark == false ? subColor : defaultWhite,
             inactiveColor:
                 changeData.isDark == false ? defaultBlack : defaultWhite,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.list),
             title: Text('Category'),
-            activeColor: changeData.isDark == false ? mainColor : defaultWhite,
+            activeColor: changeData.isDark == false ? subColor : defaultWhite,
             inactiveColor:
                 changeData.isDark == false ? defaultBlack : defaultWhite,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.info),
             title: Text('About'),
-            activeColor: changeData.isDark == false ? mainColor : defaultWhite,
+            activeColor: changeData.isDark == false ? subColor : defaultWhite,
             inactiveColor:
                 changeData.isDark == false ? defaultBlack : defaultWhite,
           )
