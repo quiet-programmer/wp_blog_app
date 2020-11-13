@@ -47,6 +47,7 @@ class _SettingsState extends State<Settings> {
                             color: changeData.isDark == false
                                 ? defaultBlack
                                 : defaultWhite,
+                            fontSize: setTextSize(15),
                           ),
                           textAlign: TextAlign.center,
                         )
@@ -63,15 +64,16 @@ class _SettingsState extends State<Settings> {
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
-                        fontSize: 18,
+                        fontSize: setTextSize(18),
                       ),
                     ),
                     subtitle: Text(
-                      "Subscribe to notifications",
+                      "Subscribe to notifications (Not Available Yet!)",
                       style: TextStyle(
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
+                        fontSize: setTextSize(13),
                       ),
                     ),
                     trailing: Switch(value: true, onChanged: null),
@@ -88,7 +90,7 @@ class _SettingsState extends State<Settings> {
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
-                        fontSize: 18,
+                        fontSize: setTextSize(18),
                       ),
                     ),
                     subtitle: Text(
@@ -97,6 +99,7 @@ class _SettingsState extends State<Settings> {
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
+                        fontSize: setTextSize(13),
                       ),
                     ),
                     trailing: Icon(
@@ -120,11 +123,12 @@ class _SettingsState extends State<Settings> {
                               ),
                             ),
                             content: Text(
-                              "Hi, I'm Godsend Joseph by name, I am a Flutter Developer, you can press on us to get my contacts",
+                              "Hi, I'm Godsend Joseph by name, I am a Flutter Developer, you can click on contact us to get my contacts",
                               style: TextStyle(
                                 color: changeData.isDark == false
                                     ? defaultBlack
                                     : defaultWhite,
+                                fontSize: setTextSize(15),
                               ),
                             ),
                           );
@@ -144,7 +148,7 @@ class _SettingsState extends State<Settings> {
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
-                        fontSize: 18,
+                        fontSize: setTextSize(18),
                       ),
                     ),
                     subtitle: Text(
@@ -153,6 +157,7 @@ class _SettingsState extends State<Settings> {
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
+                        fontSize: setTextSize(13),
                       ),
                     ),
                     trailing: Icon(
@@ -191,6 +196,7 @@ class _SettingsState extends State<Settings> {
                                       color: changeData.isDark == false
                                           ? defaultBlack
                                           : defaultWhite,
+                                      fontSize: setTextSize(15),
                                     ),
                                   ),
                                 ),
@@ -207,6 +213,7 @@ class _SettingsState extends State<Settings> {
                                       color: changeData.isDark == false
                                           ? defaultBlack
                                           : defaultWhite,
+                                      fontSize: setTextSize(15),
                                     ),
                                   ),
                                 ),
@@ -229,7 +236,7 @@ class _SettingsState extends State<Settings> {
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
-                        fontSize: 18,
+                        fontSize: setTextSize(18),
                       ),
                     ),
                     subtitle: Text(
@@ -238,6 +245,7 @@ class _SettingsState extends State<Settings> {
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
+                        fontSize: setTextSize(13),
                       ),
                     ),
                     trailing: Icon(
@@ -245,7 +253,7 @@ class _SettingsState extends State<Settings> {
                       color: subColor,
                     ),
                     onTap: () {
-                      Share.share('check out my website https://example.com',
+                      Share.share('check out my blog app for Naija Tech Guy',
                           subject: 'Look what I made!');
                     },
                   ),
@@ -261,7 +269,7 @@ class _SettingsState extends State<Settings> {
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
-                        fontSize: 18,
+                        fontSize: setTextSize(18),
                       ),
                     ),
                     subtitle: Text(
@@ -270,6 +278,7 @@ class _SettingsState extends State<Settings> {
                         color: changeData.isDark == false
                             ? defaultBlack
                             : defaultWhite,
+                        fontSize: setTextSize(13),
                       ),
                     ),
                     trailing: Icon(
@@ -278,7 +287,7 @@ class _SettingsState extends State<Settings> {
                     ),
                     onTap: () {
                       LaunchReview.launch(
-                        androidAppId: "com.example.wp_blog_app",
+                        androidAppId: "com.viewus.wp_blog",
                       );
                     },
                   ),
