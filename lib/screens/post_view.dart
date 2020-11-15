@@ -6,7 +6,8 @@ import 'package:wp_blog_app/models/posts.dart';
 
 class PostView extends StatefulWidget {
   final Posts posts;
-  PostView({Key key, @required this.posts}) : super(key: key);
+  final String title;
+  PostView({Key key, @required this.posts, this.title}) : super(key: key);
 
   @override
   _PostViewState createState() => _PostViewState();
@@ -21,14 +22,15 @@ class _PostViewState extends State<PostView> {
   Widget build(BuildContext context) {
     final Posts changeData = Hive.box(appState).get('state');
     return Scaffold(
-      backgroundColor: changeData.isDark == false ? mainColor : darkColorTwo,
+      backgroundColor:
+          changeData.isDark == false ? Colors.white : Colors.grey[900],
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Stack(
               children: <Widget>[
                 Container(
-                  height: 300,
+                  height: setContainerHeight(300),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(33),
@@ -49,8 +51,10 @@ class _PostViewState extends State<PostView> {
                   Text(
                     widget.posts.title,
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 23,
+                      color: changeData.isDark == false
+                          ? Colors.black
+                          : Colors.white,
+                      fontSize: setTextSize(23),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -70,9 +74,10 @@ class _PostViewState extends State<PostView> {
                   Text(
                     widget.posts.contents,
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      color: changeData.isDark == false
+                          ? Colors.black
+                          : Colors.white,
+                      fontSize: setTextSize(18),
                     ),
                   ),
                 ],
