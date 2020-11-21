@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return SafeArea(
           top: true,
           child: Scaffold(
-            backgroundColor: changeData.isDark == false ? mainColor : darkColor,
+            // backgroundColor: changeData.isDark == false ? mainColor : darkColor,
             body: RefreshIndicator(
               onRefresh: refreshPage,
               child: SingleChildScrollView(
@@ -54,22 +54,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        height: 290,
+                        height: setContainerHeight(290),
                         decoration: BoxDecoration(
                           color: changeData.isDark == false
                               ? Colors.white
-                              : darkColor,
+                              : Colors.grey[900],
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(33),
                             bottomRight: Radius.circular(33),
                           ),
                         ),
                         child: Container(
-                          height: 290,
+                          height: setContainerHeight(290),
                           child: Column(
                             children: <Widget>[
                               Container(
-                                height: 50,
+                                height: setContainerHeight(50),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20.0, vertical: 10.0),
@@ -78,20 +78,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Text(
-                                        "Reviews",
+                                        "Latest",
                                         style: TextStyle(
                                           color: changeData.isDark == false
                                               ? Colors.black
                                               : Colors.white,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 25.0,
+                                          fontSize: setTextSize(25),
                                         ),
                                       ),
                                       Text(
                                         "$dateFormat",
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey),
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.grey,
+                                          fontSize: setTextSize(10),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -110,8 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               "Smart Phones",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20.0,
-                                color: Colors.white,
+                                fontSize: setTextSize(20),
                               ),
                               textAlign: TextAlign.left,
                             ),
