@@ -12,6 +12,12 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  String devInfo = "Hi, I'm Godsend Joseph by name, I am a Flutter " +
+      "Developer, you can click on contact us to get my contacts";
+
+  String aboutBlog = "NaijaTechGuy is a Nigerian Technology Website " +
+      "Focused on Publishing the latest news on technology, " +
+      "smartphones, gadgets and more related content";
   @override
   Widget build(BuildContext context) {
     final Posts changeData = Hive.box(appState).get('state');
@@ -42,7 +48,7 @@ class _SettingsState extends State<Settings> {
                           ),
                         ),
                         Text(
-                          "NaijaTechGuy is a Nigerian Technology Website Focused on Publishing the latest news on technology, smartphones, gadgets and more related content",
+                          aboutBlog,
                           style: TextStyle(
                             color: changeData.isDark == false
                                 ? defaultBlack
@@ -123,7 +129,7 @@ class _SettingsState extends State<Settings> {
                               ),
                             ),
                             content: Text(
-                              "Hi, I'm Godsend Joseph by name, I am a Flutter Developer, you can click on contact us to get my contacts",
+                              devInfo,
                               style: TextStyle(
                                 color: changeData.isDark == false
                                     ? defaultBlack
