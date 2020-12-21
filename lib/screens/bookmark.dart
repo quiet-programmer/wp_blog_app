@@ -19,11 +19,13 @@ class _BookmarkState extends State<Bookmark> {
         return Scaffold(
           backgroundColor:
               changeData.isDark == false ? defaultWhite : darkColor,
-          body: Center(
-            child: Text(
-              "No Bookbark Yet!",
-              style: TextStyle(
-                color: changeData.isDark == false ? defaultBlack : defaultWhite,
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Column(
+                children: [
+                  //TODO all bookmark post to show here as a list view
+                ],
               ),
             ),
           ),
