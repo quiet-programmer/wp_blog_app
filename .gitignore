@@ -34,7 +34,7 @@
 lib/generated_plugin_registrant.dart
 
 #size configuration settings
-lib/size_config.dart
+#lib/size_config.dart
 
 # store key properties
 android/key.properties
