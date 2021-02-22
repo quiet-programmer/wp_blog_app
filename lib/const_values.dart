@@ -40,3 +40,4 @@ const defaultBlack = Color.fromRGBO(0, 0, 0, 1);
 
 // hive box name
 const String appState = "appstate";
+const String themeKey = 'state';
