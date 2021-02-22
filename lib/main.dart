@@ -11,11 +11,12 @@ import 'package:wp_blog_app/src/app.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Directory document = await getApplicationDocumentsDirectory();
-  Hive.registerAdapter(PostsAdapter());
-  Hive.init(document.path);
+  Hive
+    ..init(document.path)
+    ..registerAdapter(PostsAdapter());
   final stateOfApp = await Hive.openBox(appState);
-  if (stateOfApp.get('state') == null) {
-    stateOfApp.put("state", Posts());
+  if (stateOfApp.get(themeKey) == null) {
+    stateOfApp.put(themeKey, Posts());
   }
 
   SystemChrome.setPreferredOrientations([
