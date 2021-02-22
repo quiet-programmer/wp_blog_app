@@ -16,31 +16,29 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var dateFormat = DateFormat.yMMMMEEEEd().format(DateTime.now());
 
+  Box storeData;
+
   @override
   void initState() {
     super.initState();
     HorizontalView();
     ListViewPost();
+    storeData = Hive.box(appState);
   }
 
   // fucntion to refersh page.
   Future<Null> refreshPage() async {
     Future.delayed(Duration(seconds: 2));
-
-    setState(() {
-      HorizontalView();
-      ListViewPost();
-    });
-
+    setState(() {});
     return null;
   }
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: Hive.box(appState).listenable(),
+      valueListenable: storeData.listenable(),
       builder: (context, box, _) {
-        final Posts changeData = Hive.box(appState).get('state');
+        final Posts changeData = storeData.get('state');
         return SafeArea(
           top: true,
           child: Scaffold(
