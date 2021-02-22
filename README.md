@@ -2,6 +2,8 @@
 
 A simple Flutter Blog Application, which fetches data from naijatechguy.com, which is a blog, using the blog api. Still working on it and new features will be added soon.
 
+<p> check out app on Google Play Store <a href='https://play.google.com/store/apps/details?id=com.viewus.wp_blog'> here </a>
+
 ## Plugin's Used
 1. <p><b> Http </b></p> 
 2. <p><b> Html (To remove html formats from text) </b></p>
