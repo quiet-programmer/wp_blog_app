@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:toast/toast.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
 
 class PostView extends StatefulWidget {
   final Posts posts;
-  final String title;
-  PostView({Key key, @required this.posts, this.title}) : super(key: key);
+  PostView({Key key, @required this.posts}) : super(key: key);
 
   @override
   _PostViewState createState() => _PostViewState();
@@ -18,9 +18,17 @@ class _PostViewState extends State<PostView> {
     return DateFormat.yMMMMEEEEd().format(DateTime.parse(date));
   }
 
+  Box storeData;
+
+  @override
+  void initState() {
+    super.initState();
+    storeData = Hive.box(appState);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Posts changeData = Hive.box(appState).get('state');
+    final Posts changeData = storeData.get('state');
     return Scaffold(
       backgroundColor:
           changeData.isDark == false ? Colors.white : Colors.grey[900],
@@ -61,15 +69,39 @@ class _PostViewState extends State<PostView> {
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    "${displayTime(widget.posts.time)}",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        "${displayTime(widget.posts.time)}",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          Posts post = Posts(
+                            title: widget.posts.title,
+                            image: widget.posts.image,
+                            contents: widget.posts.contents,
+                            time: widget.posts.time,
+                            authur: widget.posts.authur,
+                          );
+                          await storeData.add(post);
+                          Toast.show('Bookmarked!!!', context,
+                              duration: 5, gravity: Toast.BOTTOM);
+                        },
+                        child: Icon(
+                          Icons.bookmark_border,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   Text(
                     widget.posts.contents,
