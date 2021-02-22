@@ -36,6 +36,7 @@ dependencies:
   share: ^0.6.4+3
   shimmer: ^1.1.1
   flutter_device_type: ^0.3.2
+  toast: ^0.1.5
 
 dev_dependencies:
   flutter_test:
