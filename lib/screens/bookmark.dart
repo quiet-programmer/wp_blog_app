@@ -71,13 +71,13 @@ class _BookmarkState extends State<Bookmark> {
                               'you sure about this?',
                             ),
                             actions: [
-                              FlatButton(
+                              TextButton(
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
                                 child: Text('No'),
                               ),
-                              FlatButton(
+                              TextButton(
                                 onPressed: () {
                                   storeData.delete(keys);
                                   Navigator.pop(context);
