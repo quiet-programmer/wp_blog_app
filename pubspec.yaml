@@ -24,7 +24,6 @@ dependencies:
   cached_network_image: ^2.3.2+1
   cupertino_icons: ^0.1.2
   flutter_device_type: ^0.3.2
-  flutter_local_notifications: ^2.0.2
   hive: ^2.0.2
   hive_flutter: ^1.0.0
   html: ^0.14.0+3
@@ -33,7 +32,6 @@ dependencies:
   launch_review: ^2.0.0
   path_provider: ^2.0.1
   provider: ^5.0.0
-  pull_to_refresh: ^1.5.8
   share: ^0.6.4+3
   shared_preferences: ^2.0.5
   shimmer: ^1.1.1
