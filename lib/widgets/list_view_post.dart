@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
+import 'package:wp_blog_app/widgets/refresh_button.dart';
 
 import '../wp_api.dart';
 
@@ -26,7 +26,6 @@ class _ListViewPostState extends State<ListViewPost> {
 
   @override
   Widget build(BuildContext context) {
-    final Posts changeData = Hive.box(appState).get('state');
     return Padding(
       padding: EdgeInsets.only(left: 10),
       child: FutureBuilder(
@@ -126,18 +125,12 @@ class _ListViewPostState extends State<ListViewPost> {
                     "Sorry please check you intetnet connection, and swipe on pull down to refresh \n \n Or",
                     style: TextStyle(),
                   ),
-                  FlatButton(
-                    color: changeData.isDark == false
-                        ? subColor
-                        : Colors.transparent,
+                  RefreshButton(
+                    text: 'Refresh',
                     onPressed: () {
                       setState(() {});
                     },
-                    child: Text(
-                      "Refresh",
-                      style: TextStyle(),
-                    ),
-                  )
+                  ),
                 ],
               ),
             );
@@ -167,18 +160,12 @@ class _ListViewPostState extends State<ListViewPost> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  FlatButton(
-                    color: changeData.isDark == false
-                        ? subColor
-                        : Colors.transparent,
+                  RefreshButton(
+                    text: 'Refresh',
                     onPressed: () {
                       setState(() {});
                     },
-                    child: Text(
-                      "Refresh",
-                      style: TextStyle(),
-                    ),
-                  )
+                  ),
                 ],
               ),
             );

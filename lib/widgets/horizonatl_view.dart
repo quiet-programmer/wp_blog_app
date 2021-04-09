@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:wp_blog_app/models/posts.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
+import 'package:wp_blog_app/widgets/refresh_button.dart';
 
 import '../wp_api.dart';
 import '../const_values.dart';
@@ -18,7 +18,6 @@ class _HorizontalViewState extends State<HorizontalView> {
 
   @override
   Widget build(BuildContext context) {
-    final Posts changeData = Hive.box(appState).get('state');
     return FutureBuilder(
       future: api.fetchTopPosts(),
       builder: (_, snapshot) {
@@ -120,18 +119,12 @@ class _HorizontalViewState extends State<HorizontalView> {
                 SizedBox(
                   height: 20.0,
                 ),
-                FlatButton(
-                  color: changeData.isDark == false
-                      ? subColor
-                      : Colors.transparent,
+                RefreshButton(
+                  text: 'Refresh',
                   onPressed: () {
                     setState(() {});
                   },
-                  child: Text(
-                    "Refresh",
-                    style: TextStyle(color: defaultWhite),
-                  ),
-                )
+                ),
               ],
             ),
           );
@@ -161,20 +154,12 @@ class _HorizontalViewState extends State<HorizontalView> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                FlatButton(
-                  color: changeData.isDark == false
-                      ? subColor
-                      : Colors.transparent,
+                RefreshButton(
+                  text: 'Refresh',
                   onPressed: () {
                     setState(() {});
                   },
-                  child: Text(
-                    "Refresh",
-                    style: TextStyle(
-                      color: defaultWhite,
-                    ),
-                  ),
-                )
+                ),
               ],
             ),
           );
