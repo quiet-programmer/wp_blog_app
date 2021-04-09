@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:wp_blog_app/const_values.dart';
-import 'package:wp_blog_app/models/posts.dart';
 import 'package:wp_blog_app/screens/post_view.dart';
+import 'package:wp_blog_app/widgets/refresh_button.dart';
 import 'package:wp_blog_app/wp_api.dart';
 
 class ReviewsCartScreen extends StatefulWidget {
@@ -25,19 +24,10 @@ class _ReviewsCartScreenState extends State<ReviewsCartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Posts changeData = Hive.box(appState).get('state');
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "NaijaTechGuy Blog",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
-        ),
+        title: Text("NaijaTechGuy Blog"),
       ),
-      backgroundColor: changeData.isDark == false ? Colors.white : darkColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -139,18 +129,12 @@ class _ReviewsCartScreenState extends State<ReviewsCartScreen> {
                         "Sorry please check you intetnet connection, and swipe on pull down to refresh \n \n Or",
                         style: TextStyle(),
                       ),
-                      FlatButton(
-                        color: changeData.isDark == false
-                            ? subColor
-                            : Colors.transparent,
+                      RefreshButton(
+                        text: 'Refresh',
                         onPressed: () {
                           setState(() {});
                         },
-                        child: Text(
-                          "Refresh",
-                          style: TextStyle(),
-                        ),
-                      )
+                      ),
                     ],
                   ),
                 );
@@ -183,18 +167,12 @@ class _ReviewsCartScreenState extends State<ReviewsCartScreen> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      FlatButton(
-                        color: changeData.isDark == false
-                            ? subColor
-                            : Colors.transparent,
+                      RefreshButton(
+                        text: 'Refresh',
                         onPressed: () {
                           setState(() {});
                         },
-                        child: Text(
-                          "Refresh",
-                          style: TextStyle(),
-                        ),
-                      )
+                      ),
                     ],
                   ),
                 );
