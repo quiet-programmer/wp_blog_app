@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
+import 'package:wp_blog_app/providers/theme_provider.dart';
 import 'package:wp_blog_app/src/app.dart';
 
 Future<void> main() async {
@@ -14,14 +16,20 @@ Future<void> main() async {
   Hive
     ..init(document.path)
     ..registerAdapter(PostsAdapter());
-  final stateOfApp = await Hive.openBox(appState);
-  if (stateOfApp.get(themeKey) == null) {
-    stateOfApp.put(themeKey, Posts());
-  }
+  await Hive.openBox(appState);
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(App());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: ThemeProvider(),
+        ),
+      ],
+      child: App(),
+    ),
+  );
 }
