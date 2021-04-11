@@ -28,10 +28,7 @@ class _PostViewState extends State<PostView> {
 
   @override
   Widget build(BuildContext context) {
-    final Posts changeData = storeData.get('state');
     return Scaffold(
-      backgroundColor:
-          changeData.isDark == false ? Colors.white : Colors.grey[900],
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -59,9 +56,6 @@ class _PostViewState extends State<PostView> {
                   Text(
                     widget.posts.title,
                     style: TextStyle(
-                      color: changeData.isDark == false
-                          ? Colors.black
-                          : Colors.white,
                       fontSize: setTextSize(23),
                       fontWeight: FontWeight.bold,
                     ),
@@ -106,9 +100,6 @@ class _PostViewState extends State<PostView> {
                   Text(
                     widget.posts.contents,
                     style: TextStyle(
-                      color: changeData.isDark == false
-                          ? Colors.black
-                          : Colors.white,
                       fontSize: setTextSize(18),
                     ),
                   ),

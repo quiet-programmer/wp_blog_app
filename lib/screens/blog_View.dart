@@ -27,7 +27,6 @@ class _BlogViewState extends State<BlogView> {
 
   @override
   Widget build(BuildContext context) {
-    final Posts changeData = storeData.get('state');
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -56,9 +55,6 @@ class _BlogViewState extends State<BlogView> {
                   Text(
                     widget.index.title,
                     style: TextStyle(
-                      color: changeData.isDark == false
-                          ? Colors.black
-                          : Colors.white,
                       fontSize: setTextSize(23),
                       fontWeight: FontWeight.bold,
                     ),
@@ -79,9 +75,6 @@ class _BlogViewState extends State<BlogView> {
                   Text(
                     widget.index.contents,
                     style: TextStyle(
-                      color: changeData.isDark == false
-                          ? Colors.black
-                          : Colors.white,
                       fontSize: setTextSize(18),
                     ),
                   ),

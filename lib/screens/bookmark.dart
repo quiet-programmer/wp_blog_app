@@ -27,21 +27,19 @@ class _BookmarkState extends State<Bookmark> {
 
   /*
   * All the null exception in the body is because I stored a bool which I use
-  * in changing the theme from dark mode to light mode, this will be change
-  * soon to me using shared preferences in the upcoming future updates.
-  * You are free to add it and send me a pull request, Thanks!!!
-  * */
+  * in changing the theme from dark mode to light mode.
+  * this has been chnanged and fixed but if any user have the app installed
+  * on their phones before that issue will still be there.
+  * I will come up with a way to fix this soon.
+  */
 
   @override
   Widget build(BuildContext context) {
-    final Posts changeData = storeData.get('state');
     return ValueListenableBuilder(
       valueListenable: storeData.listenable(),
       builder: (context, Box box, _) {
         // List<int> keys = box.keys.cast<int>().toList();
         return Scaffold(
-          backgroundColor:
-              changeData.isDark == false ? defaultWhite : darkColor,
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),

@@ -1,8 +1,9 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 import 'package:wp_blog_app/const_values.dart';
-import 'package:wp_blog_app/models/posts.dart';
+import 'package:wp_blog_app/providers/theme_provider.dart';
 import 'package:wp_blog_app/screens/bookmark.dart';
 import 'package:wp_blog_app/screens/category.dart';
 import 'package:wp_blog_app/screens/home_screen.dart';
@@ -47,25 +48,18 @@ class _TabViewState extends State<TabView> {
 
   @override
   Widget build(BuildContext context) {
-    final Posts changeData = storeData.get(themeKey);
+    final isThemeChange = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text(
           "NaijaTechGuy Blog",
-          style: TextStyle(
-            color: changeData.isDark == false ? Colors.black : Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
         ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
-                changeData.isDark ? Icons.brightness_6 : Icons.brightness_3),
+                isThemeChange.mTheme ? Icons.brightness_6 : Icons.brightness_3),
             onPressed: () {
-              changeData.changeTheme();
-              storeData.put(themeKey, changeData);
+              isThemeChange.checkTheme();
             },
           )
         ],
@@ -73,37 +67,41 @@ class _TabViewState extends State<TabView> {
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavyBar(
         backgroundColor:
-            changeData.isDark == false ? defaultWhite : Colors.grey[850],
+            isThemeChange.mTheme == false ? defaultWhite : Colors.grey[850],
         selectedIndex: _selectedPageIndex,
         onItemSelected: _selectPage,
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
-            activeColor: changeData.isDark == false ? subColor : defaultWhite,
+            activeColor:
+                isThemeChange.mTheme == false ? subColor : defaultWhite,
             inactiveColor:
-                changeData.isDark == false ? defaultBlack : defaultWhite,
+                isThemeChange.mTheme == false ? defaultBlack : defaultWhite,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.bookmark),
             title: Text('Bookmarked'),
-            activeColor: changeData.isDark == false ? subColor : defaultWhite,
+            activeColor:
+                isThemeChange.mTheme == false ? subColor : defaultWhite,
             inactiveColor:
-                changeData.isDark == false ? defaultBlack : defaultWhite,
+                isThemeChange.mTheme == false ? defaultBlack : defaultWhite,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.list),
             title: Text('Category'),
-            activeColor: changeData.isDark == false ? subColor : defaultWhite,
+            activeColor:
+                isThemeChange.mTheme == false ? subColor : defaultWhite,
             inactiveColor:
-                changeData.isDark == false ? defaultBlack : defaultWhite,
+                isThemeChange.mTheme == false ? defaultBlack : defaultWhite,
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.info),
             title: Text('About'),
-            activeColor: changeData.isDark == false ? subColor : defaultWhite,
+            activeColor:
+                isThemeChange.mTheme == false ? subColor : defaultWhite,
             inactiveColor:
-                changeData.isDark == false ? defaultBlack : defaultWhite,
+                isThemeChange.mTheme == false ? defaultBlack : defaultWhite,
           )
         ],
       ),
