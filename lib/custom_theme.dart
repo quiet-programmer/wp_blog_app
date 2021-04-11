@@ -6,6 +6,16 @@ ThemeData buildLightTheme() => ThemeData.light().copyWith(
       backgroundColor: Colors.grey[100],
       accentColor: Colors.grey[800],
       scaffoldBackgroundColor: Colors.white,
+      iconTheme: IconThemeData(
+        color: defaultBlack,
+      ),
+      cardTheme: CardTheme(
+        color: Colors.white,
+      ),
+      dialogTheme: DialogTheme(
+        backgroundColor: defaultWhite,
+      ),
+      dividerColor: defaultWhite,
       appBarTheme: AppBarTheme(
         centerTitle: true,
         brightness: Brightness.dark,
@@ -30,6 +40,16 @@ ThemeData buildDarkTheme() => ThemeData.dark().copyWith(
       backgroundColor: Colors.grey[900],
       accentColor: Colors.grey[400],
       scaffoldBackgroundColor: darkColor,
+      dividerColor: defaultBlack,
+      iconTheme: IconThemeData(
+        color: defaultWhite,
+      ),
+      cardTheme: CardTheme(
+        color: cardColor,
+      ),
+      dialogTheme: DialogTheme(
+        backgroundColor: defaultBlack,
+      ),
       appBarTheme: AppBarTheme(
         centerTitle: true,
         brightness: Brightness.dark,
