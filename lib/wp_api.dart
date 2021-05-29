@@ -22,7 +22,7 @@ class WpApi {
     List<Posts> posts = [];
     try {
       var response = await http.get(
-        Uri.encodeFull("$api/posts?_embed&per_page=20"),
+        Uri.parse("$api/posts?_embed&per_page=20"),
         headers: headers,
       );
 
@@ -60,7 +60,7 @@ class WpApi {
   // call for all Game articles
   Future<List<Posts>> fetchListPosts() async {
     var response = await http.get(
-      Uri.encodeFull(listApi + "posts?_embed&categories=467"),
+      Uri.parse(listApi + "posts?_embed&categories=467"),
       headers: headers,
     );
 
@@ -93,7 +93,7 @@ class WpApi {
   // api call for categories sections
   Future<List<Posts>> fetchOtherCategories(int cartCode) async {
     var response = await http.get(
-      Uri.encodeFull(listApi + "posts?_embed&categories=$cartCode"),
+      Uri.parse(listApi + "posts?_embed&categories=$cartCode"),
       headers: headers,
     );
 
