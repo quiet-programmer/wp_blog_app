@@ -11,7 +11,7 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.2+3
+version: 1.0.3+4
 
 environment:
   sdk: ">=2.8.0 <3.0.0"
@@ -20,24 +20,24 @@ dependencies:
   flutter:
     sdk: flutter
   auto_size_text: ^2.1.0
-  bottom_navy_bar: ^5.4.0
-  cached_network_image: ^2.3.2+1
-  cupertino_icons: ^0.1.2
-  flutter_device_type: ^0.3.2
+  bottom_navy_bar: ^6.0.0
+  cached_network_image: ^3.0.0
+  cupertino_icons: ^1.0.3
+  flutter_device_type: ^0.4.0
   hive: ^2.0.2
   hive_flutter: ^1.0.0
-  html: ^0.14.0+3
-  http: ^0.12.0+4
-  intl: ^0.16.1
-  launch_review: ^2.0.0
+  html: ^0.15.0
+  http: ^0.13.3
+  intl: ^0.17.0
+  launch_review: ^3.0.1
   path_provider: ^2.0.1
   provider: ^5.0.0
-  share: ^0.6.4+3
+  share: ^2.0.4
   shared_preferences: ^2.0.5
-  shimmer: ^1.1.1
+  shimmer: ^2.0.0
   toast: ^0.1.5
-  flutter_local_notifications: ^5.0.0+1
-  workmanager: ^0.2.3
+  flutter_local_notifications: ^6.0.0
+  workmanager: ^0.4.0
 
 dev_dependencies:
   flutter_test:
