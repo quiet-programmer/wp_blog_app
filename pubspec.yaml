@@ -24,27 +24,27 @@ dependencies:
   cached_network_image: ^3.0.0
   cupertino_icons: ^1.0.3
   flutter_device_type: ^0.4.0
-  hive: ^2.0.2
-  hive_flutter: ^1.0.0
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
   html: ^0.15.0
   http: ^0.13.3
   intl: ^0.17.0
   launch_review: ^3.0.1
-  path_provider: ^2.0.1
+  path_provider: ^2.0.2
   provider: ^5.0.0
   share: ^2.0.4
-  shared_preferences: ^2.0.5
+  shared_preferences: ^2.0.6
   shimmer: ^2.0.0
   toast: ^0.1.5
   flutter_local_notifications: ^6.0.0
-  workmanager: ^0.4.0
+  workmanager: ^0.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.12.2
-  change_app_package_name: ^0.1.2
-  hive_generator: ^1.0.1
+  build_runner: ^2.0.5
+  change_app_package_name: ^1.0.0
+  hive_generator: ^1.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
