@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/providers/theme_provider.dart';
 import 'package:wp_blog_app/widgets/horizonatl_view.dart';
 import 'package:wp_blog_app/widgets/list_view_post.dart';
-
-import '../const_values.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var dateFormat = DateFormat.yMMMMEEEEd().format(DateTime.now());
 
-  Box storeData;
+  Box? storeData;
 
   @override
   void initState() {

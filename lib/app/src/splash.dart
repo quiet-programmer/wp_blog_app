@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:wp_blog_app/app/screens/tab_view.dart';
 import 'package:wp_blog_app/const_values.dart';
-import 'package:wp_blog_app/screens/tab_view.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,7 +11,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  Box storeData;
+  Box? storeData;
   @override
   void initState() {
     super.initState();

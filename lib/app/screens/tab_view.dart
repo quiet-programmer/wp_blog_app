@@ -2,12 +2,12 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
+import 'package:wp_blog_app/app/screens/bookmark.dart';
+import 'package:wp_blog_app/app/screens/category.dart';
+import 'package:wp_blog_app/app/screens/home_screen.dart';
+import 'package:wp_blog_app/app/screens/settings.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/providers/theme_provider.dart';
-import 'package:wp_blog_app/screens/bookmark.dart';
-import 'package:wp_blog_app/screens/category.dart';
-import 'package:wp_blog_app/screens/home_screen.dart';
-import 'package:wp_blog_app/screens/settings.dart';
 
 class TabView extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class TabView extends StatefulWidget {
 }
 
 class _TabViewState extends State<TabView> {
-  final List<Map<String, Object>> _pages = [
+  final List<Map<String, dynamic>> _pages = [
     {
       'page': HomeScreen(),
     },
@@ -38,7 +38,7 @@ class _TabViewState extends State<TabView> {
     });
   }
 
-  Box storeData;
+  Box? storeData;
 
   @override
   void initState() {

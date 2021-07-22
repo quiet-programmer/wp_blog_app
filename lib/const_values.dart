@@ -7,31 +7,34 @@ const subColor = Color.fromRGBO(255, 133, 0, 1);
 //
 
 // dark and light theme color
-Color darkColor = Colors.grey[900];
+Color? darkColor = Colors.grey[900];
 const darkColorTwo = Color.fromRGBO(32, 32, 96, 1);
 
-Color cardColor = Colors.grey[850];
+Color? cardColor = Colors.grey[850];
 //
 
-setTextSize(double size) {
-  var textMultiplier = SizeConfig.textMultiplier;
-  var textHeight = size / SizeConfig.heightMultiplier;
-  var textProperSize = textHeight * textMultiplier;
+double? hMultiplier = SizeConfig.heightMultiplier;
+double? wMultiplier = SizeConfig.widthMultiplier;
+
+setTextSize(double? size) {
+  double? textMultiplier = SizeConfig.textMultiplier;
+  double? textHeight = size! / hMultiplier!;
+  double? textProperSize = textHeight * textMultiplier!;
   return textProperSize;
 }
 
-setContainerHeight(double size) {
-  var containerMultiplier = SizeConfig.heightMultiplier;
-  var myHeight = size / SizeConfig.heightMultiplier;
-  var properHeight = myHeight * containerMultiplier;
+setContainerHeight(double? size) {
+  double? containerMultiplier = SizeConfig.heightMultiplier;
+  double? myHeight = size! / hMultiplier!;
+  double? properHeight = myHeight * containerMultiplier!;
   return properHeight;
 }
 
-setContainerWidth(double size) {
-  var containerMultiplier = SizeConfig.widthMultiplier;
-  var myHeight = size / SizeConfig.widthMultiplier;
-  var properHeight = myHeight * containerMultiplier;
-  return properHeight;
+setContainerWidth(double? size) {
+  double? containerMultiplier = SizeConfig.widthMultiplier;
+  double? myWidth = size! / wMultiplier!;
+  double? properWidth = myWidth * containerMultiplier!;
+  return properWidth;
 }
 
 //other colors

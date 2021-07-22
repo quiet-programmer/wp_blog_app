@@ -1,17 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:wp_blog_app/app/screens/post_view.dart';
 import 'package:wp_blog_app/const_values.dart';
-import 'package:wp_blog_app/screens/post_view.dart';
 import 'package:wp_blog_app/widgets/refresh_button.dart';
 import 'package:wp_blog_app/wp_api.dart';
 
-class InternetCartScreen extends StatefulWidget {
+class IosCartScreen extends StatefulWidget {
   @override
-  _InternetCartScreenState createState() => _InternetCartScreenState();
+  _IosCartScreenState createState() => _IosCartScreenState();
 }
 
-class _InternetCartScreenState extends State<InternetCartScreen> {
+class _IosCartScreenState extends State<IosCartScreen> {
   WpApi api = WpApi();
 
   String formatDateTime(DateTime dateTime) {
@@ -32,8 +32,8 @@ class _InternetCartScreenState extends State<InternetCartScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: FutureBuilder(
-            future: api.fetchOtherCategories(416),
-            builder: (context, snapshot) {
+            future: api.fetchOtherCategories(286),
+            builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.done &&
                   snapshot.hasData) {
                 return ListView.builder(

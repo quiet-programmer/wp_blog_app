@@ -4,8 +4,8 @@ import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
 
 class RefreshButton extends StatefulWidget {
-  final String text;
-  final Function onPressed;
+  final String? text;
+  final VoidCallback? onPressed;
 
   RefreshButton({this.text, this.onPressed});
   @override
@@ -24,7 +24,7 @@ class _RefreshButtonState extends State<RefreshButton> {
       ),
       onPressed: widget.onPressed,
       child: Text(
-        widget.text,
+        '${widget.text}',
         style: TextStyle(
           color: defaultWhite,
         ),

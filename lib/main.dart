@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:wp_blog_app/app/src/app.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
 import 'package:wp_blog_app/providers/theme_provider.dart';
-import 'package:wp_blog_app/src/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

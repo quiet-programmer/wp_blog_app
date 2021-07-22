@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-import 'package:toast/toast.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
 
-class PostView extends StatefulWidget {
-  final Posts posts;
-  PostView({Key key, @required this.posts}) : super(key: key);
+class BlogView extends StatefulWidget {
+  final Posts? index;
 
+  BlogView({this.index});
   @override
-  _PostViewState createState() => _PostViewState();
+  _BlogViewState createState() => _BlogViewState();
 }
 
-class _PostViewState extends State<PostView> {
+class _BlogViewState extends State<BlogView> {
   displayTime(String date) {
     return DateFormat.yMMMMEEEEd().format(DateTime.parse(date));
   }
 
-  Box storeData;
+  Box? storeData;
 
   @override
   void initState() {
@@ -42,19 +41,19 @@ class _PostViewState extends State<PostView> {
                       bottomRight: Radius.circular(33),
                     ),
                     image: DecorationImage(
-                        image: NetworkImage(widget.posts.image),
+                        image: NetworkImage('${widget.index!.image}'),
                         fit: BoxFit.cover),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    widget.posts.title,
+                    '${widget.index!.title}',
                     style: TextStyle(
                       fontSize: setTextSize(23),
                       fontWeight: FontWeight.bold,
@@ -63,49 +62,25 @@ class _PostViewState extends State<PostView> {
                   SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        "${displayTime(widget.posts.time)}",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          Posts post = Posts(
-                            title: widget.posts.title,
-                            image: widget.posts.image,
-                            contents: widget.posts.contents,
-                            time: widget.posts.time,
-                            authur: widget.posts.authur,
-                          );
-                          await storeData.add(post);
-                          Toast.show('Bookmarked!!!', context,
-                              duration: 5, gravity: Toast.BOTTOM);
-                        },
-                        child: Icon(
-                          Icons.bookmark_border,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    "${displayTime(widget.index!.time.toString())}",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(
                     height: 30,
                   ),
                   Text(
-                    widget.posts.contents,
+                    '${widget.index!.contents}',
                     style: TextStyle(
                       fontSize: setTextSize(18),
                     ),
                   ),
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),

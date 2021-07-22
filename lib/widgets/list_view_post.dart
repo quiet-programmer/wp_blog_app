@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:wp_blog_app/app/screens/post_view.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
-import 'package:wp_blog_app/screens/post_view.dart';
 import 'package:wp_blog_app/widgets/refresh_button.dart';
 
 import '../wp_api.dart';
@@ -30,7 +30,7 @@ class _ListViewPostState extends State<ListViewPost> {
       padding: EdgeInsets.only(left: 10),
       child: FutureBuilder(
         future: api.fetchListPosts(),
-        builder: (context, snapshot) {
+        builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {
             return ListView.builder(
@@ -66,7 +66,7 @@ class _ListViewPostState extends State<ListViewPost> {
                             ),
                           ),
                           child: CachedNetworkImage(
-                            imageUrl: post.image,
+                            imageUrl: '${post.image}',
                             fit: BoxFit.cover,
                             width: setContainerWidth(100),
                             height: setContainerHeight(100),
@@ -91,7 +91,7 @@ class _ListViewPostState extends State<ListViewPost> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    post.title.substring(0, 20) + "...",
+                                    post.title!.substring(0, 20) + "...",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: setTextSize(18),
@@ -103,7 +103,7 @@ class _ListViewPostState extends State<ListViewPost> {
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    "${displayTime(post.time)}",
+                                    "${displayTime(post.time.toString())}",
                                     style: TextStyle(),
                                   ),
                                 ),

@@ -1,17 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:wp_blog_app/app/screens/post_view.dart';
 import 'package:wp_blog_app/const_values.dart';
-import 'package:wp_blog_app/screens/post_view.dart';
 import 'package:wp_blog_app/widgets/refresh_button.dart';
 import 'package:wp_blog_app/wp_api.dart';
 
-class GamingAndroidScreen extends StatefulWidget {
+class SmartphonesScreen extends StatefulWidget {
   @override
-  _GamingAndroidScreenState createState() => _GamingAndroidScreenState();
+  _SmartphonesScreenState createState() => _SmartphonesScreenState();
 }
 
-class _GamingAndroidScreenState extends State<GamingAndroidScreen> {
+class _SmartphonesScreenState extends State<SmartphonesScreen> {
   WpApi api = WpApi();
 
   String formatDateTime(DateTime dateTime) {
@@ -32,8 +32,8 @@ class _GamingAndroidScreenState extends State<GamingAndroidScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: FutureBuilder(
-            future: api.fetchOtherCategories(177),
-            builder: (context, snapshot) {
+            future: api.fetchOtherCategories(357),
+            builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.done &&
                   snapshot.hasData) {
                 return ListView.builder(

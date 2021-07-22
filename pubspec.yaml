@@ -14,12 +14,12 @@ description: A new Flutter project.
 version: 1.0.3+4
 
 environment:
-  sdk: ">=2.8.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  auto_size_text: ^2.1.0
+  auto_size_text_pk: ^3.0.0
   bottom_navy_bar: ^6.0.0
   cached_network_image: ^3.1.0
   cupertino_icons: ^1.0.3
@@ -35,9 +35,7 @@ dependencies:
   share: ^2.0.4
   shared_preferences: ^2.0.6
   shimmer: ^2.0.0
-  toast: ^0.1.5
-  flutter_local_notifications: ^6.0.0
-  workmanager: ^0.4.1
+  fluttertoast: ^8.0.7
 
 dev_dependencies:
   flutter_test:

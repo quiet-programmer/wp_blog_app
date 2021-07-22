@@ -13,7 +13,7 @@ class WpApi {
   String _parseHtmlString(String htmlString) {
     var document = parse(htmlString);
 
-    String parsedString = parse(document.body.text).documentElement.text;
+    String parsedString = parse(document.body!.text).documentElement!.text;
 
     return parsedString;
   }

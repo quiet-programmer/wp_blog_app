@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wp_blog_app/app/src/splash.dart';
 import 'package:wp_blog_app/custom_theme.dart';
 import 'package:wp_blog_app/providers/theme_provider.dart';
 import 'package:wp_blog_app/size_config.dart';
-import 'package:wp_blog_app/src/splash.dart';
 
 class App extends StatefulWidget {
   @override

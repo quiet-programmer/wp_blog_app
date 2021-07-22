@@ -5,22 +5,22 @@ part 'posts.g.dart';
 @HiveType(typeId: 0)
 class Posts {
   @HiveField(0)
-  bool isDark = false;
+  bool? isDark = false;
 
   @HiveField(1)
-  final String title;
+  final String? title;
 
   @HiveField(2)
-  final String image;
+  final String? image;
 
   @HiveField(3)
-  final String contents;
+  final String? contents;
 
   @HiveField(4)
-  final String time;
+  final String? time;
 
   @HiveField(5)
-  final String authur;
+  final String? authur;
 
   Posts({
     this.title,
@@ -31,6 +31,6 @@ class Posts {
   });
 
   void changeTheme() {
-    isDark = !isDark;
+    isDark = !isDark!;
   }
 }

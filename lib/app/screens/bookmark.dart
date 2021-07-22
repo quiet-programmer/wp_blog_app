@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:wp_blog_app/app/screens/blog_View.dart';
 import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/models/posts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:wp_blog_app/screens/blog_View.dart';
 
 class Bookmark extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class Bookmark extends StatefulWidget {
 }
 
 class _BookmarkState extends State<Bookmark> {
-  Box storeData;
+  Box? storeData;
 
   displayTime(String date) {
     return DateFormat.yMMMMEEEEd().format(DateTime.parse(date));
@@ -36,7 +36,7 @@ class _BookmarkState extends State<Bookmark> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: storeData.listenable(),
+      valueListenable: storeData!.listenable(),
       builder: (context, Box box, _) {
         // List<int> keys = box.keys.cast<int>().toList();
         return Scaffold(
@@ -47,7 +47,7 @@ class _BookmarkState extends State<Bookmark> {
                 physics: NeverScrollableScrollPhysics(),
                 primary: false,
                 shrinkWrap: true,
-                itemCount: storeData.keys.toList().length,
+                itemCount: storeData!.keys.toList().length,
                 itemBuilder: (_, index) {
                   final keys = box.keys.toList()[index];
                   final Posts post = box.get(keys);
@@ -77,7 +77,7 @@ class _BookmarkState extends State<Bookmark> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  storeData.delete(keys);
+                                  storeData!.delete(keys);
                                   Navigator.pop(context);
                                 },
                                 child: Text('Yes'),
@@ -132,7 +132,7 @@ class _BookmarkState extends State<Bookmark> {
                                     child: post.title == null
                                         ? Container()
                                         : Text(
-                                            post.title,
+                                            '${post.title}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: setTextSize(18),
@@ -146,7 +146,7 @@ class _BookmarkState extends State<Bookmark> {
                                     child: post.time == null
                                         ? Container()
                                         : Text(
-                                            "${displayTime(post.time)}" ?? '',
+                                            "${displayTime(post.time.toString())}",
                                             style: TextStyle(),
                                           ),
                                   ),

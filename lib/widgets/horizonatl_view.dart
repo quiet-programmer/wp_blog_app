@@ -1,8 +1,8 @@
-import 'package:auto_size_text/auto_size_text.dart';
+import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:wp_blog_app/app/screens/post_view.dart';
 import 'package:wp_blog_app/models/posts.dart';
-import 'package:wp_blog_app/screens/post_view.dart';
 import 'package:wp_blog_app/widgets/refresh_button.dart';
 
 import '../wp_api.dart';
@@ -20,7 +20,7 @@ class _HorizontalViewState extends State<HorizontalView> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: api.fetchTopPosts(),
-      builder: (_, snapshot) {
+      builder: (_, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
           return Container(
@@ -53,7 +53,7 @@ class _HorizontalViewState extends State<HorizontalView> {
                                 ),
                               ),
                               child: CachedNetworkImage(
-                                imageUrl: post.image,
+                                imageUrl: '${post.image}',
                                 fit: BoxFit.cover,
                                 width: setContainerWidth(250),
                                 height: setContainerHeight(150),
@@ -89,7 +89,7 @@ class _HorizontalViewState extends State<HorizontalView> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: AutoSizeText(
-                              post.title,
+                              '${post.title}',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: setTextSize(18),
