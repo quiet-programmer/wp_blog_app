@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'package:wp_blog_app/models/posts.dart';
 
 class WpApi {
-  static const api = "https://www.naijatechguy.com/wp-json/wp/v2";
+  static const api = "https://www.naijatechguy.com/wp-json/wp/v2/";
   static const listApi = "https://www.naijatechguy.com/wp-json/wp/v2/";
   static const headers = {"Accept": "application/json"};
 
