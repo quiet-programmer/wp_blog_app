@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -7,7 +8,8 @@ import 'package:wp_blog_app/models/posts.dart';
 
 class PostView extends StatefulWidget {
   final Posts? posts;
-  PostView({Key? key, @required this.posts}) : super(key: key);
+
+  const PostView({Key? key, @required this.posts}) : super(key: key);
 
   @override
   _PostViewState createState() => _PostViewState();
@@ -35,9 +37,9 @@ class _PostViewState extends State<PostView> {
             Stack(
               children: <Widget>[
                 Container(
-                  height: setContainerHeight(300),
+                  height: 300.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(33),
                       bottomRight: Radius.circular(33),
                     ),
@@ -56,23 +58,23 @@ class _PostViewState extends State<PostView> {
                   Text(
                     '${widget.posts!.title}',
                     style: TextStyle(
-                      fontSize: setTextSize(23),
+                      fontSize: 23.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     children: [
                       Text(
                         '${displayTime(widget.posts!.time.toString())}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       InkWell(
@@ -91,19 +93,19 @@ class _PostViewState extends State<PostView> {
                             toastLength: Toast.LENGTH_SHORT,
                           );
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.bookmark_border,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Text(
                     '${widget.posts!.contents}',
                     style: TextStyle(
-                      fontSize: setTextSize(18),
+                      fontSize: 18.sp,
                     ),
                   ),
                 ],

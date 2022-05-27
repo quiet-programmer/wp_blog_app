@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:wp_blog_app/app/screens/blog_View.dart';
@@ -8,6 +9,8 @@ import 'package:wp_blog_app/models/posts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class Bookmark extends StatefulWidget {
+  const Bookmark({Key? key}) : super(key: key);
+
   @override
   _BookmarkState createState() => _BookmarkState();
 }
@@ -44,7 +47,7 @@ class _BookmarkState extends State<Bookmark> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 primary: false,
                 shrinkWrap: true,
                 itemCount: storeData!.keys.toList().length,
@@ -63,8 +66,8 @@ class _BookmarkState extends State<Bookmark> {
                         context: context,
                         builder: (_) {
                           return AlertDialog(
-                            title: Text('Warning'),
-                            content: Text(
+                            title: const Text('Warning'),
+                            content: const Text(
                               'You are about to delete this bookmark are '
                               'you sure about this?',
                             ),
@@ -73,14 +76,14 @@ class _BookmarkState extends State<Bookmark> {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: Text('No'),
+                                child: const Text('No'),
                               ),
                               TextButton(
                                 onPressed: () {
                                   storeData!.delete(keys);
                                   Navigator.pop(context);
                                 },
-                                child: Text('Yes'),
+                                child: const Text('Yes'),
                               ),
                             ],
                           );
@@ -88,7 +91,7 @@ class _BookmarkState extends State<Bookmark> {
                       );
                     },
                     child: Container(
-                      margin: EdgeInsets.only(bottom: 20, top: 20),
+                      margin: const EdgeInsets.only(bottom: 20, top: 20),
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,10 +99,10 @@ class _BookmarkState extends State<Bookmark> {
                           post.image == null
                               ? Container()
                               : Container(
-                                  width: setContainerWidth(100),
-                                  height: setContainerHeight(100),
-                                  margin: EdgeInsets.only(left: 20),
-                                  decoration: BoxDecoration(
+                                  width: 100.w,
+                                  height: 100.h,
+                                  margin: const EdgeInsets.only(left: 20),
+                                  decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(15.0),
                                     ),
@@ -118,40 +121,37 @@ class _BookmarkState extends State<Bookmark> {
                                     },
                                   ),
                                 ),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
                           Expanded(
-                            child: Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: post.title == null
-                                        ? Container()
-                                        : Text(
-                                            '${post.title}',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: setTextSize(18),
-                                            ),
-                                            softWrap: true,
-                                            overflow: TextOverflow.fade,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: post.title == null
+                                      ? Container()
+                                      : Text(
+                                          '${post.title}',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: setTextSize(18),
                                           ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: post.time == null
-                                        ? Container()
-                                        : Text(
-                                            "${displayTime(post.time.toString())}",
-                                            style: TextStyle(),
-                                          ),
-                                  ),
-                                ],
-                              ),
+                                          softWrap: true,
+                                          overflow: TextOverflow.fade,
+                                        ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: post.time == null
+                                      ? Container()
+                                      : Text(
+                                          "${displayTime(post.time.toString())}",
+                                        ),
+                                ),
+                              ],
                             ),
                           )
                         ],
