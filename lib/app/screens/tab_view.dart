@@ -10,6 +10,8 @@ import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/providers/theme_provider.dart';
 
 class TabView extends StatefulWidget {
+  const TabView({Key? key}) : super(key: key);
+
   @override
   _TabViewState createState() => _TabViewState();
 }
@@ -17,16 +19,16 @@ class TabView extends StatefulWidget {
 class _TabViewState extends State<TabView> {
   final List<Map<String, dynamic>> _pages = [
     {
-      'page': HomeScreen(),
+      'page': const HomeScreen(),
     },
     {
-      'page': Bookmark(),
+      'page': const Bookmark(),
     },
     {
-      'page': Category(),
+      'page': const Category(),
     },
     {
-      'page': Settings(),
+      'page': const Settings(),
     },
   ];
 
@@ -51,7 +53,7 @@ class _TabViewState extends State<TabView> {
     final isThemeChange = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "NaijaTechGuy Blog",
         ),
         actions: <Widget>[
@@ -72,32 +74,32 @@ class _TabViewState extends State<TabView> {
         onItemSelected: _selectPage,
         items: [
           BottomNavyBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
+            icon: const Icon(Icons.home),
+            title: const Text('Home'),
             activeColor:
                 isThemeChange.mTheme == false ? subColor : defaultWhite,
             inactiveColor:
                 isThemeChange.mTheme == false ? defaultBlack : defaultWhite,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.bookmark),
-            title: Text('Bookmarked'),
+            icon: const Icon(Icons.bookmark),
+            title: const Text('Bookmarked'),
             activeColor:
                 isThemeChange.mTheme == false ? subColor : defaultWhite,
             inactiveColor:
                 isThemeChange.mTheme == false ? defaultBlack : defaultWhite,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.list),
-            title: Text('Category'),
+            icon: const Icon(Icons.list),
+            title: const Text('Category'),
             activeColor:
                 isThemeChange.mTheme == false ? subColor : defaultWhite,
             inactiveColor:
                 isThemeChange.mTheme == false ? defaultBlack : defaultWhite,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.info),
-            title: Text('About'),
+            icon: const Icon(Icons.info),
+            title: const Text('About'),
             activeColor:
                 isThemeChange.mTheme == false ? subColor : defaultWhite,
             inactiveColor:

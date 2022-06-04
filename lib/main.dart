@@ -29,7 +29,7 @@ Future<void> main() async {
           value: ThemeProvider(),
         ),
       ],
-      child: App(),
+      child: const App(),
     ),
   );
 }

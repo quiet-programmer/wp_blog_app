@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
@@ -6,17 +7,19 @@ import 'package:wp_blog_app/const_values.dart';
 import 'package:wp_blog_app/providers/theme_provider.dart';
 
 class Settings extends StatefulWidget {
+  const Settings({Key? key}) : super(key: key);
+
   @override
   _SettingsState createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
-  String devInfo = "Hi, I'm Godsend Joseph by name, I am a Flutter " +
+  String devInfo = "Hi, I'm Godsend Joseph by name, I am a Flutter "
       "Developer, you can click on contact us to get my contacts";
 
-  String aboutBlog = "NaijaTechGuy is a Nigerian Technology Website " +
-      "Focused on Publishing the latest news on technology, " +
-      "smartphones, gadgets and more related content";
+  String aboutBlog = "NaijaTechGuy is a Nigerian Technology Website "
+      "Focused on Publishing the latest news on technology, smartphones,"
+      " gadgets and more related content";
   @override
   Widget build(BuildContext context) {
     final isThemeChange = Provider.of<ThemeProvider>(context);
@@ -31,59 +34,59 @@ class _SettingsState extends State<Settings> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: 100,
-                      width: 300,
+                      height: 100.h,
+                      width: 300.w,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: isThemeChange.mTheme == false
-                              ? AssetImage('assets/logo/naijatechguyD.png')
-                              : AssetImage('assets/logo/naijatechguy.png'),
+                              ? const AssetImage('assets/logo/naijatechguyD.png')
+                              : const AssetImage('assets/logo/naijatechguy.png'),
                         ),
                       ),
                     ),
                     Text(
                       aboutBlog,
                       style: TextStyle(
-                        fontSize: setTextSize(15),
+                        fontSize: 15.sp,
                       ),
                       textAlign: TextAlign.center,
                     )
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               ListTile(
                 title: Text(
                   "Notifications",
                   style: TextStyle(
-                    fontSize: setTextSize(18),
+                    fontSize: 18.sp,
                   ),
                 ),
                 subtitle: Text(
                   "Subscribe to notifications (Not Available Yet!)",
                   style: TextStyle(
-                    fontSize: setTextSize(13),
+                    fontSize: 13.sp,
                   ),
                 ),
-                trailing: Switch(value: true, onChanged: null),
+                trailing: const Switch(value: true, onChanged: null),
               ),
-              Divider(),
+              const Divider(),
               ListTile(
                 title: Text(
                   "About Us",
                   style: TextStyle(
-                    fontSize: setTextSize(18),
+                    fontSize: 18.sp,
                   ),
                 ),
                 subtitle: Text(
                   "About the developer",
                   style: TextStyle(
-                    fontSize: setTextSize(13),
+                    fontSize: 13.sp,
                   ),
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.info,
                   color: subColor,
                 ),
@@ -92,14 +95,13 @@ class _SettingsState extends State<Settings> {
                     context: context,
                     builder: (_) {
                       return AlertDialog(
-                        title: Text(
+                        title: const Text(
                           "About the Developer",
-                          style: TextStyle(),
                         ),
                         content: Text(
                           devInfo,
                           style: TextStyle(
-                            fontSize: setTextSize(15),
+                            fontSize: 15.sp,
                           ),
                         ),
                       );
@@ -107,21 +109,21 @@ class _SettingsState extends State<Settings> {
                   );
                 },
               ),
-              Divider(),
+              const Divider(),
               ListTile(
                 title: Text(
                   "Contact Us",
                   style: TextStyle(
-                    fontSize: setTextSize(18),
+                    fontSize: 18.sp,
                   ),
                 ),
                 subtitle: Text(
                   "Contact the developer",
                   style: TextStyle(
-                    fontSize: setTextSize(13),
+                    fontSize: 13.sp,
                   ),
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.phone,
                   color: subColor,
                 ),
@@ -130,32 +132,31 @@ class _SettingsState extends State<Settings> {
                     context: context,
                     builder: (_) {
                       return AlertDialog(
-                        title: Text(
+                        title: const Text(
                           "Developer Contact",
-                          style: TextStyle(),
                         ),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             ListTile(
-                              leading: Icon(
+                              leading: const Icon(
                                 Icons.email,
                               ),
                               title: Text(
                                 "godsendjoseph@gmail.com",
                                 style: TextStyle(
-                                  fontSize: setTextSize(15),
+                                  fontSize: 15.sp,
                                 ),
                               ),
                             ),
                             ListTile(
-                              leading: Icon(
+                              leading: const Icon(
                                 Icons.phone,
                               ),
                               title: Text(
                                 "+234 8140864923",
                                 style: TextStyle(
-                                  fontSize: setTextSize(15),
+                                  fontSize: 15.sp,
                                 ),
                               ),
                             ),
@@ -166,21 +167,21 @@ class _SettingsState extends State<Settings> {
                   );
                 },
               ),
-              Divider(),
+              const Divider(),
               ListTile(
                 title: Text(
                   "Share",
                   style: TextStyle(
-                    fontSize: setTextSize(18),
+                    fontSize: 18.sp,
                   ),
                 ),
                 subtitle: Text(
                   "Share the app with friends",
                   style: TextStyle(
-                    fontSize: setTextSize(13),
+                    fontSize: 13.sp,
                   ),
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.share,
                   color: subColor,
                 ),
@@ -189,21 +190,21 @@ class _SettingsState extends State<Settings> {
                       subject: 'Look what I made!');
                 },
               ),
-              Divider(),
+              const Divider(),
               ListTile(
                 title: Text(
                   "Rate Us",
                   style: TextStyle(
-                    fontSize: setTextSize(18),
+                    fontSize: 18.sp,
                   ),
                 ),
                 subtitle: Text(
                   "Rate the app on play store",
                   style: TextStyle(
-                    fontSize: setTextSize(13),
+                    fontSize: 13.sp,
                   ),
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.star,
                   color: subColor,
                 ),

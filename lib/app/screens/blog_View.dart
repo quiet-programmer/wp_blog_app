@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:wp_blog_app/const_values.dart';
@@ -7,7 +8,8 @@ import 'package:wp_blog_app/models/posts.dart';
 class BlogView extends StatefulWidget {
   final Posts? index;
 
-  BlogView({this.index});
+  const BlogView({this.index});
+
   @override
   _BlogViewState createState() => _BlogViewState();
 }
@@ -34,9 +36,9 @@ class _BlogViewState extends State<BlogView> {
             Stack(
               children: <Widget>[
                 Container(
-                  height: setContainerHeight(300),
+                  height: 300.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(33),
                       bottomRight: Radius.circular(33),
                     ),
@@ -55,27 +57,27 @@ class _BlogViewState extends State<BlogView> {
                   Text(
                     '${widget.index!.title}',
                     style: TextStyle(
-                      fontSize: setTextSize(23),
+                      fontSize: 23.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
                     "${displayTime(widget.index!.time.toString())}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Text(
                     '${widget.index!.contents}',
                     style: TextStyle(
-                      fontSize: setTextSize(18),
+                      fontSize: 18.sp,
                     ),
                   ),
                 ],
