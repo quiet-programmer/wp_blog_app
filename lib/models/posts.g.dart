@@ -17,11 +17,11 @@ class PostsAdapter extends TypeAdapter<Posts> {
       for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Posts(
-      title: fields[1] as String,
-      image: fields[2] as String,
-      contents: fields[3] as String,
-      time: fields[4] as String,
-      authur: fields[5] as String,
+      title: fields[1]==null?"Error":fields[1] as String,
+      image: fields[2]==null?"":fields[2] as String,
+      contents: fields[3]==null?"":fields[3] as String,
+      time: fields[4]==null?"":fields[4] as String,
+      authur: fields[5]==null?"admin":fields[5] as String,
     )..isDark = fields[0] as bool;
   }
 
