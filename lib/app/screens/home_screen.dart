@@ -70,18 +70,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    height: setContainerHeight(290),
+                    height: setContainerHeight(307),
                     decoration: BoxDecoration(
                       color: isThemeChange.mTheme == false
                           ? Colors.white
-                          : Colors.grey[900],
+                          : Colors.grey.shade900,
                       borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(33),
                         bottomRight: Radius.circular(33),
                       ),
                     ),
                     child: Container(
-                      height: setContainerHeight(290),
+                      height: setContainerHeight(307),
                       child: Column(
                         children: <Widget>[
                           Container(

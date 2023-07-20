@@ -1,16 +1,16 @@
-import 'package:flutter/rendering.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 class SizeConfig {
-  static double? _screenWidth;
-  static double? _screenHeight;
-  static double? _blockWidth = 0;
-  static double? _blockHeight = 0;
+  static double? _screenWidth=392.7;
+  static double? _screenHeight=309.2;
+  static double? _blockWidth = 30;
+  static double? _blockHeight = 30;
 
-  static double? textMultiplier;
-  static double? imageSizeMultiplier;
-  static double? heightMultiplier;
-  static double? widthMultiplier;
+  static double? textMultiplier=1;
+  static double? imageSizeMultiplier=1;
+  static double? heightMultiplier=1;
+  static double? widthMultiplier=1;
   static bool isPortrait = true;
   static bool isMobilePortrait = false;
 
@@ -38,7 +38,9 @@ class SizeConfig {
     heightMultiplier = _blockHeight;
     widthMultiplier = _blockWidth;
 
-    print(_blockWidth);
-    print(_blockHeight);
+    if (kDebugMode) {
+      print(_blockWidth);
+      print(_blockHeight);
+    }
   }
 }
